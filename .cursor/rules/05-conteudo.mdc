@@ -1,0 +1,41 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Sistema de Conteúdo
+
+Este projeto utiliza arquivos Markdown com frontmatter YAML para gerenciar o conteúdo do site.
+
+## Estrutura de Conteúdo
+- [content/pages/](mdc:content/pages) - Diretório principal de conteúdo
+  - [content/pages/index.md](mdc:content/pages/index.md) - Página inicial do site
+
+## Formato de Arquivo
+Cada arquivo Markdown inclui:
+1. **Frontmatter YAML** - Metadados e configuração da página
+2. **Seções** - Array de componentes a serem renderizados
+3. **Corpo** - Conteúdo Markdown opcional
+
+Exemplo:
+```yaml
+---
+title: Home Page
+type: page
+sections:
+  - type: hero
+    heading: Título Principal
+    body: Descrição da seção
+    button:
+      label: Botão de Ação
+      url: 'https://exemplo.com'
+    image:
+      src: /images/exemplo.png
+      alt: Descrição da imagem
+---
+```
+
+## Processamento
+- O utilitário [utils/content.js](mdc:utils/content.js) usa `gray-matter` para processar o frontmatter
+- Os dados processados são passados para os componentes React correspondentes
+- Os componentes são renderizados baseados no tipo definido em cada seção

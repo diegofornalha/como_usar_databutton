@@ -1,0 +1,32 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Integração com Netlify e Stackbit
+
+Este projeto é configurado para ser utilizado com create.netlify.com/studio/ e se integra com o Stackbit para edição visual.
+
+## Configuração do Netlify
+- [netlify.toml](mdc:netlify.toml) - Arquivo de configuração para o Netlify
+  - Usa o plugin `@netlify/plugin-nextjs` para otimização
+  - Configura o diretório de publicação para `.next`
+  - Define o comando de build como `npm run build`
+
+## Configuração do Stackbit
+- [stackbit.config.ts](mdc:stackbit.config.ts) - Arquivo de configuração para o Stackbit
+  - Define os modelos de conteúdo disponíveis
+  - Configura o Git como fonte de conteúdo
+  - Especifica diretórios de conteúdo e ativos
+
+## Fluxo de Trabalho
+1. O conteúdo é editado visualmente no Stackbit Studio
+2. As alterações são salvas como arquivos Markdown no repositório Git
+3. O Netlify detecta as alterações e aciona um novo deploy
+4. O Next.js gera páginas estáticas durante o build baseadas nos arquivos Markdown
+5. O site é publicado no Netlify
+
+## Desenvolvimento Local
+Para desenvolvimento local, você pode executar:
+- `npm run dev` - Iniciar o servidor de desenvolvimento Next.js
+- `stackbit dev` - Iniciar o Stackbit Studio local para edição visual
