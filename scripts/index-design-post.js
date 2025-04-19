@@ -1,6 +1,9 @@
-// Script para indexar o post "What is a Design System" no Algolia
+// Script para indexar o post "What is a Design System" do arquivo Markdown
 require('dotenv').config();
 const algoliasearch = require('algoliasearch');
+const fs = require('fs');
+const path = require('path');
+const matter = require('front-matter');
 
 // Credenciais do Algolia
 const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || '42TZWHW8UP';
@@ -18,47 +21,64 @@ if (!ALGOLIA_ADMIN_API_KEY) {
 const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_ADMIN_API_KEY);
 const index = client.initIndex(INDEX_NAME);
 
-// Dados do post
-const designSystemPost = {
-  objectID: 'post_design_system',
-  post_id: 8001,
-  post_title: "What is a Design System",
-  post_date: Math.floor(Date.now() / 1000), // Timestamp atual
-  post_date_formatted: new Date().toLocaleDateString('en-US', {
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric'
-  }),
-  author_name: "Design Team",
-  author_image_url: "https://secure.gravatar.com/avatar/design123?s=40&d=mm&r=g",
-  permalink: "/blog/what-is-design-system",
-  categories: ["Design", "UI/UX", "Development"],
-  image: "https://example.com/images/design-system-cover.jpg",
-  time_to_read: 8,
-  content: `A design system is a collection of reusable components, guided by clear standards,
-  that can be assembled to build any number of applications. Design systems help teams build
-  better products faster by making design reusable, creating a shared language, and reducing 
-  design and technical debt. They allow designers and developers to create consistent user
-  experiences across different platforms and products.
-  
-  Key components of a design system include:
-  - Design tokens (colors, typography, spacing)
-  - UI components and patterns
-  - Documentation and usage guidelines
-  - Design principles and best practices
-  
-  Famous examples include Google's Material Design, IBM's Carbon, and Salesforce's Lightning.`
-};
+// Caminho para o arquivo Markdown
+const postPath = path.join(process.cwd(), 'content/pages/Post/what-is-a-design-system.md');
 
-// Função para indexar o post
+// Função para processar e indexar o post
 async function indexDesignSystemPost() {
   try {
-    console.log(`Indexando post "What is a Design System" no índice ${INDEX_NAME}...`);
+    console.log(`Lendo o arquivo: ${postPath}`);
+    
+    // Verificar se o arquivo existe
+    if (!fs.existsSync(postPath)) {
+      console.error(`Erro: O arquivo ${postPath} não foi encontrado.`);
+      process.exit(1);
+    }
+    
+    // Ler o conteúdo do arquivo
+    const fileContent = fs.readFileSync(postPath, 'utf8');
+    
+    // Analisar o front matter e o conteúdo
+    const { attributes, body } = matter(fileContent);
+    
+    // Extrair a data do post e converter para timestamp se necessário
+    let postDate;
+    if (attributes.date) {
+      postDate = new Date(attributes.date).getTime() / 1000;
+    } else {
+      postDate = Math.floor(Date.now() / 1000);
+    }
+    
+    // Criar objeto para indexação
+    const postObject = {
+      objectID: `post_${attributes.slug || 'design-system'}`,
+      post_id: attributes.slug || 'design-system',
+      post_title: attributes.title || 'What is a Design System',
+      post_date: postDate,
+      post_date_formatted: attributes.date 
+        ? new Date(attributes.date).toLocaleDateString('en-US', {
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric'
+          })
+        : new Date().toLocaleDateString('en-US'),
+      author_name: attributes.author ? attributes.author.split('/').pop().replace('.json', '') : 'Design Team',
+      permalink: `/blog/${attributes.slug || 'what-is-a-design-system'}`,
+      categories: attributes.tags || ["Design", "UI/UX", "Development"],
+      time_to_read: Math.ceil(body.split(' ').length / 200), // Estimativa baseada em 200 palavras por minuto
+      content: body.trim(),
+      excerpt: attributes.excerpt || '',
+      image: attributes.featuredImage?.url || '/images/abstract-feature3.svg'
+    };
+    
+    console.log(`Indexando post "${postObject.post_title}" no índice ${INDEX_NAME}...`);
+    console.log('Dados processados:', JSON.stringify(postObject, null, 2));
     
     // Enviar para o Algolia
-    const result = await index.saveObject(designSystemPost);
+    const result = await index.saveObject(postObject);
     
     console.log(`Post indexado com sucesso! ObjectID: ${result.objectID}`);
+    console.log(`Você pode conferir na busca acessando: http://localhost:3000/mcpx`);
     return result;
   } catch (error) {
     console.error('Erro ao indexar o post:', error);
