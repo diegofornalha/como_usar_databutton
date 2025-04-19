@@ -9,9 +9,7 @@ styles:
     textAlign: center
 seo:
   metaTitle: mcpx - Demo site
-  metaDescription: >-
-    This is the mcpx of the demo site where we post about technology, product,
-    and design.
+  metaDescription: Busca de Conteúdos
   socialImage: /images/img-placeholder.svg
   type: Seo
   addTitleSuffix: true
