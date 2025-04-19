@@ -1,5 +1,5 @@
 ---
-title: Blog
+title: Blog - databutton.com.br
 slug: /blog
 numOfPostsPerPage: 8
 enableSearch: true
