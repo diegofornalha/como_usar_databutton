@@ -5,7 +5,7 @@ sections:
   - type: hero
     heading: Databutton
     body: >
-Esse é um portal de novidades dobre o Databutton
+      Esse é um portal de novidades dobre o Databutton
     button:
       label: crie seu cadastro
       url: 'https://databutton.com.br'
@@ -17,7 +17,7 @@ Esse é um portal de novidades dobre o Databutton
   - type: hero
     heading: vamos contruir juntos?
     body: >
-tutoriais completos pra te ajudar.
+      tutoriais completos pra te ajudar.
     image:
       src: /images/fpo-shapes.png
       alt: databutton
