@@ -3,32 +3,7 @@ title: mcpx - databutton.com.br
 slug: /mcpx
 numOfPostsPerPage: 8
 enableSearch: true
-topSections:
-  - type: ImageGallerySection
-    subtitle: Apoiador
-    images:
-      - type: ImageBlock
-        url: /images/vise-logo.svg
-        altText: Vise logo
-        elementId: ''
-    elementId: ''
-    motion: static
-    colors: bg-light-fg-dark
-    styles:
-      self:
-        margin:
-          - mt-0
-          - ml-0
-          - mb-0
-          - mr-0
-        padding:
-          - pt-16
-          - pl-16
-          - pb-16
-          - pr-16
-        justifyContent: center
-      subtitle:
-        textAlign: center
+topSections: []
 styles:
   title:
     textAlign: center
