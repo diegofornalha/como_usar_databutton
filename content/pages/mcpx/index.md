@@ -8,7 +8,7 @@ styles:
   title:
     textAlign: center
 seo:
-  metaTitle: mcpx - Demo site
+  metaTitle: mcpx - como-usar - Netlify Create
   metaDescription: Busca de Conteúdos
   socialImage: /images/img-placeholder.svg
   type: Seo
