@@ -85,16 +85,7 @@
             "type": "Social"
         }
     ],
-    "legalLinks": [
-        {
-            "label": "Terms",
-            "url": "/",
-            "icon": "arrowRight",
-            "iconPosition": "right",
-            "style": "secondary",
-            "type": "Link"
-        }
-    ],
+    "legalLinks": [],
     "copyrightText": "Desenvolvido por [Databutton](https://www.databutton.com.br)\n",
     "colors": "bg-dark-fg-light",
     "type": "Footer"
