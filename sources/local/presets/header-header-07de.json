@@ -32,9 +32,9 @@
                         "$$type": "Link"
                     },
                     {
-                        "label": "Blog",
-                        "altText": "Blog",
-                        "url": "/blog",
+                        "label": "mcpx",
+                        "altText": "mcpx",
+                        "url": "/mcpx",
                         "showIcon": null,
                         "icon": "arrowRight",
                         "iconPosition": "right",

@@ -17,7 +17,7 @@ function getPageUrl(page) {
     }
 
     if (['PostLayout'].includes(page?.__metadata.modelName)) {
-        return `/blog${page.slug.startsWith('/') ? page.slug : `/${page.slug}`}`;
+        return `/mcpx${page.slug.startsWith('/') ? page.slug : `/${page.slug}`}`;
     }
 
     return page.slug.startsWith('/') ? page.slug : `/${page.slug}`;
