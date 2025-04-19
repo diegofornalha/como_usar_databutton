@@ -53,7 +53,7 @@ sections:
           - pr-16
 seo:
   metaTitle: Home - databutton.com.br
-  metaDescription: This demo site is built with Netlify Create.
+  metaDescription: A sua visão.Seu software.Construído por AI
   socialImage: /images/main-hero.jpg
   type: Seo
 type: PageLayout
