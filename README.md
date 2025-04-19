@@ -1,49 +1,54 @@
-# Netlify Visual Editor Next.js + Markdown Files Starter
+# Netlify Content Ops Starter 
 
-**ℹ️ Este repositório é baseado no [nosso tutorial de Introdução](https://docs.netlify.com/) em seu estado finalizado.**
+![Content Ops Starter](https://assets.stackbit.com/docs/content-ops-starter-thumb.png)
 
-Existem duas maneiras de começar a usar este projeto: importando via interface ou desenvolvendo localmente.
+Netlify starter that's made for customization with a flexible content model, component library, [visual editing](https://docs.netlify.com/visual-editor/overview/) and [Git Content Source](https://docs.netlify.com/create/content-sources/git/).
 
-## Criando um Projeto Netlify Visual Editor via Interface
+**⚡ View demo:** [https://content-ops-starter.netlify.app/](https://content-ops-starter.netlify.app/)
 
-Para criar um projeto Netlify Visual Editor baseado em nuvem a partir deste repositório.
+## Deploying to Netlify
 
-Um novo repositório GitHub com este código será criado para você. Você pode transferir a propriedade do repositório duplicado através das Configurações do Projeto.
+If you click "Deploy to Netlify" button, it will create a new repo for you that looks exactly like this one, and sets that repo up immediately for deployment on Netlify.
 
-Uma versão de produção do site no Netlify é provisionada automaticamente.
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/content-ops-starter)
 
-## Desenvolvendo Localmente
+## Develop with Netlify Visual Editor Locally
 
-### Clone este repositório
+The typical development process is to begin by working locally. Clone this repository, then run `npm install` in its root directory.
 
-Clone este repositório e execute `npm install` em seu diretório raiz.
+Run the Next.js development server:
 
-### Execute o Site
+```txt
+cd content-ops-starter
+npm run dev
+```
 
-Execute o servidor de desenvolvimento Next.js:
+Install the [Netlify Visual Editor CLI](https://www.npmjs.com/package/@stackbit/cli). Then open a new terminal window in the same project directory and run the Netlify visual editor dev server:
 
-    npm run dev
+```txt
+npm install -g @stackbit/cli
+stackbit dev
+```
 
-Visite [localhost:3000](http://localhost:3000).
+This outputs your own Netlify visual editor URL. Open this, register, or sign in, and you will be directed to Netlify's visual editor for your new project.
 
-### Execute o Netlify Visual Editor no Modo de Desenvolvimento Local
+![Next.js Dev + Visual Editor Dev](https://assets.stackbit.com/docs/next-dev-stackbit-dev.png)
 
-Mantenha o servidor de desenvolvimento Next.js rodando e abra uma nova janela de linha de comando no mesmo diretório.
+## Building for production
 
-Instale as ferramentas CLI do Netlify Visual Editor (uma vez):
-    
-    npm i -g @netlify/visual-editor-cli@latest
+To build a static site for production, run the following command
 
-Execute o CLI:
+```shell
+npm run build
+```
 
-    netlify-visual-editor dev
+## Next Steps
 
-Clique no link exibido para [localhost:8090/_visual-editor](http://localhost:8090/_visual-editor) e o editor visual será aberto.
+Here are a few suggestions on what to do next if you're new to Netlify visual editor:
 
-### Crie um Projeto Netlify Visual Editor Baseado em Nuvem
+- Learn [Netlify visual editor overview](https://docs.netlify.com/visual-editor/visual-editing/)
+- Check [Netlify visual editor reference documentation](https://visual-editor-reference.netlify.com/)
 
-Para implantar um projeto Netlify Visual Editor baseado em nuvem conectado ao seu repositório:
+## Support
 
-1. Envie seu código para um repositório GitHub
-2. Abra e escolha *Usar meu repositório*.
-
+If you get stuck along the way, get help in our [support forums](https://answers.netlify.com/).

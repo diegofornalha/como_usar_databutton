@@ -1,7 +1,12 @@
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
-    reactStrictMode: true,
-    swcMinify: true
+    env: {
+        stackbitPreview: process.env.STACKBIT_PREVIEW
+    },
+    trailingSlash: true,
+    reactStrictMode: true
 };
 
 module.exports = nextConfig;
