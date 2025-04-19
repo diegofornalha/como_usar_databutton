@@ -1,0 +1,177 @@
+/* Estilos personalizados para o componente de busca */
+
+/* Estilo do container da caixa de pesquisa */
+.searchBoxContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-bottom: 1.5rem; /* Adiciona margem inferior de 24px (1.5rem) */
+}
+
+/* Estilos para os resultados */
+.contentCard {
+  transition: all 0.2s ease;
+  background-color: white;
+}
+
+.contentCard:hover {
+  transform: translateY(-2px);
+}
+
+/* Classe wrapper para estilos globais do Algolia */
+.algoliaStyles {
+  width: 100%;
+}
+
+/* CSS global que será aplicado via algoliaStyles */
+.algoliaStyles :global(.custom-search-box .ais-SearchBox-form) {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 50px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  background-color: white;
+}
+
+.algoliaStyles :global(.custom-search-box .ais-SearchBox-input) {
+  height: 100%;
+  width: 100%;
+  padding: 0 50px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+}
+
+.algoliaStyles :global(.custom-search-box .ais-SearchBox-input:focus) {
+  box-shadow: inset 0 0 0 2px #2563eb;
+}
+
+.algoliaStyles :global(.custom-search-box .ais-SearchBox-submit) {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+}
+
+.algoliaStyles :global(.custom-search-box .ais-SearchBox-reset) {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  opacity: 0.5;
+}
+
+.algoliaStyles :global(.custom-search-box .ais-SearchBox-reset:hover) {
+  opacity: 1;
+}
+
+.algoliaStyles :global(.ais-Hits-list) {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.algoliaStyles :global(.ais-Hits-item) {
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  border: none;
+}
+
+.algoliaStyles :global(.ais-Pagination-list) {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.algoliaStyles :global(.ais-Pagination-item) {
+  margin: 0;
+}
+
+.algoliaStyles :global(.ais-Pagination-link) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 8px;
+  border-radius: 4px;
+  background-color: white;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.algoliaStyles :global(.ais-Pagination-item--selected .ais-Pagination-link) {
+  background-color: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+.algoliaStyles :global(.ais-Pagination-item--disabled .ais-Pagination-link) {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.algoliaStyles :global(.ais-SearchBox-submitIcon),
+.algoliaStyles :global(.ais-SearchBox-resetIcon) {
+  width: 14px;
+  height: 14px;
+}
+
+.algoliaStyles :global(.ais-Hits__empty) {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.algoliaStyles :global(.ais-Hits__empty h3) {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.algoliaStyles :global(.ais-Hits__empty p) {
+  color: #666;
+}
+
+/* Responsividade via media queries */
+@media screen and (min-width: 640px) {
+  .algoliaStyles :global(.ais-Hits-list) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .algoliaStyles :global(.ais-Hits-list) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  
+  .algoliaStyles :global(.ais-Pagination-link) {
+    min-width: 42px;
+    height: 42px;
+    font-size: 16px;
+  }
+} 

@@ -11,19 +11,20 @@ const ContentSearch = dynamic(
 
 const MCPXPage = () => {
   return (
-    <div className="container">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
       <Head>
         <title>MCPX - Busca de Conteúdos</title>
         <meta name="description" content="Busque conteúdos no MCPX usando Algolia" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       
-      <main className="py-8">
+      <main className="py-4 sm:py-6 lg:py-8">
         <ContentSearch />
       </main>
       
-      <footer className="py-6 border-t border-gray-200 mt-8">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <p className="text-gray-600">Powered by Algolia</p>
+      <footer className="py-4 sm:py-6 border-t border-gray-200 mt-8">
+        <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-gray-600 text-center sm:text-left">Powered by Algolia</p>
           <a 
             href="https://www.algolia.com" 
             target="_blank" 

@@ -8,7 +8,9 @@
         "index-algolia": "node -r esm scripts/index-algolia.js",
         "index-movies": "node scripts/index-movies.js",
         "index-content": "node scripts/index-content.js",
-        "index-design-post": "node scripts/index-design-post.js"
+        "index-design-post": "node scripts/index-design-post.js",
+        "index-databutton-post": "node scripts/index-databutton-post.js",
+        "index-all-posts": "node scripts/index-all-posts.js"
     },
     "dependencies": {
         "@algolia/autocomplete-js": "^1.17.1",

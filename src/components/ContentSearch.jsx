@@ -5,10 +5,10 @@ import {
   SearchBox,
   Hits,
   Configure,
-  Pagination,
-  RefinementList,
-  ClearRefinements
+  Pagination
 } from 'react-instantsearch-dom';
+import Link from 'next/link';
+import styles from './SearchStyles.module.css'; // Importação correta do CSS Module
 
 // Inicializa o cliente Algolia
 const searchClient = algoliasearch(
@@ -46,28 +46,36 @@ const ContentHit = ({ hit }) => {
     });
   };
 
+  // Formatar URL para o post
+  const getPostUrl = () => {
+    if (!hit.post_id) return '#';
+    return `/mcpx/${hit.post_id}`;
+  };
+
   return (
-    <div className="content-card p-4 border rounded-lg shadow-md hover:shadow-lg transition-shadow">
-      <div className="flex flex-col md:flex-row gap-4">
+    <div className={`${styles.contentCard} p-4 border rounded-lg shadow-md hover:shadow-lg transition-shadow`}>
+      <div className="flex flex-col sm:flex-row gap-4">
         {hit.image && (
           <div className="content-thumbnail flex-shrink-0">
-            <img
-              src={getImageUrl()}
-              alt={hit.post_title || 'Conteúdo'}
-              className="w-full md:w-32 h-auto object-cover rounded"
-              onError={() => setImageError(true)}
-            />
+            <Link href={getPostUrl()}>
+              <img
+                src={getImageUrl()}
+                alt={hit.post_title || 'Conteúdo'}
+                className="w-full sm:w-24 md:w-32 h-auto object-cover rounded"
+                onError={() => setImageError(true)}
+              />
+            </Link>
           </div>
         )}
         
         <div className="content-details flex-grow">
           <h3 className="text-xl font-bold">
-            <a href={hit.permalink} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+            <Link href={getPostUrl()} className="text-blue-600 hover:underline">
               {hit.post_title}
-            </a>
+            </Link>
           </h3>
           
-          <div className="post-meta flex items-center mt-2 text-sm text-gray-600">
+          <div className="post-meta flex flex-wrap items-center mt-2 text-sm text-gray-600">
             {hit.author_image_url && (
               <img 
                 src={hit.author_image_url} 
@@ -76,8 +84,8 @@ const ContentHit = ({ hit }) => {
               />
             )}
             {hit.author_name && <span className="mr-3">{hit.author_name}</span>}
-            {hit.post_date && <span>{formatDate(hit.post_date)}</span>}
-            {hit.time_to_read && <span className="ml-3">{hit.time_to_read} min de leitura</span>}
+            {hit.post_date && <span className="mr-3">{formatDate(hit.post_date)}</span>}
+            {hit.time_to_read && <span>{hit.time_to_read} min de leitura</span>}
           </div>
           
           {hit.categories && hit.categories.length > 0 && (
@@ -90,11 +98,15 @@ const ContentHit = ({ hit }) => {
             </div>
           )}
           
-          {hit.content && (
+          {hit.excerpt ? (
+            <p className="content-excerpt text-sm text-gray-700 line-clamp-3 mt-2">
+              {hit.excerpt}
+            </p>
+          ) : hit.content ? (
             <p className="content-excerpt text-sm text-gray-700 line-clamp-3 mt-2">
               {hit.content.substring(0, 150)}...
             </p>
-          )}
+          ) : null}
         </div>
       </div>
     </div>
@@ -103,8 +115,8 @@ const ContentHit = ({ hit }) => {
 
 const ContentSearch = () => {
   return (
-    <div className="algolia-instant-search mx-auto px-4 max-w-7xl">
-      <h1 className="text-3xl font-bold text-center mb-8">Busca de Conteúdos</h1>
+    <div className={`algolia-instant-search mx-auto px-2 sm:px-4 max-w-7xl ${styles.algoliaStyles}`}>
+      <h1 className="text-2xl sm:text-3xl font-bold text-center mb-4 sm:mb-8">Busca de Conteúdos</h1>
       
       <InstantSearch
         searchClient={searchClient}
@@ -117,82 +129,42 @@ const ContentSearch = () => {
         />
         
         {/* Barra de pesquisa */}
-        <SearchBox
-          className="mb-6"
-          translations={{
-            placeholder: 'Buscar conteúdos...',
-            submitTitle: 'Enviar busca',
-            resetTitle: 'Limpar busca',
-          }}
-        />
+        <div className={styles.searchBoxContainer}>
+          <SearchBox
+            className="custom-search-box"
+            translations={{
+              placeholder: 'Buscar conteúdos...',
+              submitTitle: 'Enviar busca',
+              resetTitle: 'Limpar busca',
+            }}
+          />
+        </div>
         
-        <div className="search-container grid grid-cols-1 md:grid-cols-4 gap-6">
-          {/* Filtros (coluna lateral) */}
-          <div className="filters col-span-1">
-            <div className="filter-section mb-6">
-              <h3 className="text-lg font-semibold mb-2">Filtros</h3>
-              <ClearRefinements
-                translations={{
-                  reset: 'Limpar filtros',
-                }}
-              />
-            </div>
-            
-            <div className="filter-section mb-6">
-              <h4 className="font-medium mb-2">Categorias</h4>
-              <RefinementList
-                attribute="categories"
-                limit={10}
-                showMore={true}
-                showMoreLimit={20}
-                translations={{
-                  showMore: 'Mostrar mais',
-                  showLess: 'Mostrar menos',
-                }}
-              />
-            </div>
-            
-            <div className="filter-section mb-6">
-              <h4 className="font-medium mb-2">Autores</h4>
-              <RefinementList
-                attribute="author_name"
-                limit={10}
-                showMore={true}
-                showMoreLimit={20}
-                translations={{
-                  showMore: 'Mostrar mais',
-                  showLess: 'Mostrar menos',
-                }}
-              />
-            </div>
-          </div>
+        {/* Resultados da pesquisa */}
+        <div className="search-results w-full">
+          <Hits hitComponent={({ hit }) => <ContentHit hit={hit} />} />
           
-          {/* Resultados da pesquisa */}
-          <div className="search-results col-span-1 md:col-span-3">
-            <Hits hitComponent={({ hit }) => <ContentHit hit={hit} />} />
-            
-            {/* Paginação */}
-            <div className="pagination-container mt-8 flex justify-center">
-              <Pagination 
-                showFirst={true}
-                showPrevious={true}
-                showNext={true}
-                showLast={true}
-                padding={2}
-                translations={{
-                  previous: '‹ Anterior',
-                  next: 'Próximo ›',
-                  first: '« Primeira',
-                  last: 'Última »',
-                  aria: {
-                    previous: 'Página anterior',
-                    next: 'Próxima página',
-                    first: 'Primeira página',
-                    last: 'Última página',
-                  }
-                }}
-              />
-            </div>
+          {/* Paginação */}
+          <div className="pagination-container mt-8 flex justify-center">
+            <Pagination 
+              showFirst={true}
+              showPrevious={true}
+              showNext={true}
+              showLast={true}
+              padding={1}
+              translations={{
+                previous: '‹',
+                next: '›',
+                first: '«',
+                last: '»',
+                aria: {
+                  previous: 'Página anterior',
+                  next: 'Próxima página',
+                  first: 'Primeira página',
+                  last: 'Última página',
+                }
+              }}
+            />
           </div>
         </div>
       </InstantSearch>

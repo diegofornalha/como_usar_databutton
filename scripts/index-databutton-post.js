@@ -1,4 +1,4 @@
-// Script para indexar o post "What is a Design System" do arquivo Markdown
+// Script para indexar o post "Como Funciona o DataButton" do arquivo Markdown
 require('dotenv').config();
 const algoliasearch = require('algoliasearch');
 const fs = require('fs');
@@ -22,10 +22,10 @@ const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_ADMIN_API_KEY);
 const index = client.initIndex(INDEX_NAME);
 
 // Caminho para o arquivo Markdown
-const postPath = path.join(process.cwd(), 'content/pages/Post/what-is-a-design-system.md');
+const postPath = path.join(process.cwd(), 'content/pages/Post/como-funciona-databutton.md');
 
 // Função para processar e indexar o post
-async function indexDesignSystemPost() {
+async function indexDataButtonPost() {
   try {
     console.log(`Lendo o arquivo: ${postPath}`);
     
@@ -51,20 +51,20 @@ async function indexDesignSystemPost() {
     
     // Criar objeto para indexação
     const postObject = {
-      objectID: `post_${attributes.slug || 'design-system'}`,
-      post_id: attributes.slug || 'design-system',
-      post_title: attributes.title || 'What is a Design System',
+      objectID: `post_${attributes.slug || 'databutton'}`,
+      post_id: attributes.slug || 'databutton',
+      post_title: attributes.title || 'Como Funciona o DataButton',
       post_date: postDate,
       post_date_formatted: attributes.date 
-        ? new Date(attributes.date).toLocaleDateString('en-US', {
+        ? new Date(attributes.date).toLocaleDateString('pt-BR', {
             year: 'numeric', 
             month: 'long', 
             day: 'numeric'
           })
-        : new Date().toLocaleDateString('en-US'),
-      author_name: attributes.author ? attributes.author.split('/').pop().replace('.json', '') : 'Design Team',
-      permalink: `/blog/${attributes.slug || 'what-is-a-design-system'}`,
-      categories: attributes.tags || ["Design", "UI/UX", "Development"],
+        : new Date().toLocaleDateString('pt-BR'),
+      author_name: attributes.author ? attributes.author.split('/').pop().replace('.json', '') : 'DataButton Team',
+      permalink: `/mcpx/${attributes.slug || 'como-funciona-databutton'}`,
+      categories: attributes.tags || ["DataButton", "Integração", "Automação"],
       time_to_read: Math.ceil(body.split(' ').length / 200), // Estimativa baseada em 200 palavras por minuto
       content: body.trim(),
       excerpt: attributes.excerpt || '',
@@ -87,7 +87,7 @@ async function indexDesignSystemPost() {
 }
 
 // Executar indexação
-indexDesignSystemPost()
+indexDataButtonPost()
   .then(() => console.log('Processo de indexação concluído.'))
   .catch(error => {
     console.error('Falha no processo de indexação:', error);
