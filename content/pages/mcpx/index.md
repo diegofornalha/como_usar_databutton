@@ -5,7 +5,7 @@ numOfPostsPerPage: 8
 enableSearch: true
 topSections:
   - type: ImageGallerySection
-    subtitle: Our customers
+    subtitle: Apoiador
     images:
       - type: ImageBlock
         url: /images/vise-logo.svg
