@@ -3,28 +3,17 @@ title: Home Page
 type: page
 sections:
   - type: hero
-    heading: Databutton
+    heading: "Let's turn your ideas into exceptional software"
     body: >
-      Esse é um portal de novidades dobre o Databutton
+      What are we building? Transforme suas ideias em realidade com nossa expertise
+      em desenvolvimento de software. Criamos soluções excepcionais que impulsionam
+      seu negócio para o próximo nível.
     button:
-      label: crie seu cadastro
-      url: 'https://databutton.com.br'
+      label: Comece seu Projeto
+      url: 'https://databutton.com.br/contato'
       theme: outline
     image:
       src: /images/fpo-shapes.png
-      alt: databutton
-    theme: imgRight
-  - type: hero
-    heading: vamos contruir juntos?
-    body: >
-      tutoriais completos pra te ajudar.
-    image:
-      src: /images/fpo-shapes.png
-      alt: databutton
-    button:
-      type: button
-      label: saiba mais
-      url: 'https://databutton.com.br/'
-      theme: outline
+      alt: Desenvolvimento de Software
     theme: imgRight
 ---
