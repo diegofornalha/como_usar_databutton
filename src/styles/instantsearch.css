@@ -1,0 +1,514 @@
+/* Estilos para Algolia InstantSearch.js */
+
+/* Estilizando a caixa de busca */
+.ais-SearchBox {
+  margin-bottom: 1.5rem;
+}
+
+.ais-SearchBox-form {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  overflow: hidden;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.ais-SearchBox-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  outline: none;
+  font-size: 1rem;
+  border: none;
+}
+
+.ais-SearchBox-submit,
+.ais-SearchBox-reset {
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4b5563;
+}
+
+.ais-SearchBox-submitIcon,
+.ais-SearchBox-resetIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Estilizando os filtros */
+.ais-Panel {
+  margin-bottom: 1.5rem;
+}
+
+.ais-Panel-header {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  color: #1f2937;
+}
+
+.ais-RefinementList-item {
+  margin-bottom: 0.5rem;
+}
+
+.ais-RefinementList-checkbox {
+  margin-right: 0.5rem;
+}
+
+.ais-RefinementList-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ais-RefinementList-count {
+  margin-left: 0.5rem;
+  padding: 0.125rem 0.375rem;
+  background-color: #f3f4f6;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+/* Estilizando os resultados */
+.ais-Hits-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.ais-Hits-item {
+  border-radius: 0.375rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ais-Hits-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.movie-poster img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.movie-info {
+  padding: 1rem;
+}
+
+.movie-title {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #1f2937;
+}
+
+.movie-year {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.movie-rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.movie-rating .stars {
+  color: #f59e0b;
+  margin-right: 0.25rem;
+}
+
+.movie-rating .value {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.movie-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.movie-genre {
+  padding: 0.125rem 0.375rem;
+  background-color: #e5e7eb;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  color: #4b5563;
+}
+
+/* Estilizando a paginação */
+.ais-Pagination {
+  margin-top: 2rem;
+}
+
+.ais-Pagination-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  gap: 0.25rem;
+}
+
+.ais-Pagination-item {
+  margin: 0 0.125rem;
+}
+
+.ais-Pagination-link {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.ais-Pagination-item--selected .ais-Pagination-link {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.ais-Pagination-item--disabled .ais-Pagination-link {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ais-Pagination-link:hover:not(.ais-Pagination-item--disabled .ais-Pagination-link) {
+  background-color: #f3f4f6;
+}
+
+/* Estilo para o contêiner principal do InstantSearch */
+.instant-search-container {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2rem;
+}
+
+.search-filters {
+  padding-right: 1rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .instant-search-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .search-filters {
+    padding-right: 0;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* InstantSearch Styles */
+.algolia-instant-search {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Container com layout para filtros laterais e resultados */
+.instant-search-container {
+  display: grid;
+  grid-template-columns: minmax(200px, 250px) 1fr;
+  gap: 24px;
+}
+
+/* Estilização da caixa de pesquisa */
+.ais-SearchBox {
+  margin-bottom: 20px;
+}
+
+.ais-SearchBox-form {
+  display: flex;
+  position: relative;
+}
+
+.ais-SearchBox-input {
+  width: 100%;
+  padding: 10px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.ais-SearchBox-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.ais-SearchBox-submit,
+.ais-SearchBox-reset {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.ais-SearchBox-submit {
+  right: 40px;
+  color: #666;
+}
+
+.ais-SearchBox-reset {
+  right: 10px;
+  color: #999;
+}
+
+/* Estilização dos painéis de refinamento */
+.search-filters {
+  margin-right: 16px;
+}
+
+.ais-Panel {
+  margin-bottom: 24px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ais-Panel-header {
+  background-color: #f8f8f8;
+  padding: 12px 16px;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+}
+
+.ais-Panel-body {
+  padding: 16px;
+}
+
+/* Listas de refinamento */
+.ais-RefinementList-searchBox {
+  margin-bottom: 12px;
+}
+
+.ais-RefinementList-searchBox .ais-SearchBox-input {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+.ais-RefinementList-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ais-RefinementList-item {
+  margin-bottom: 8px;
+}
+
+.ais-RefinementList-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ais-RefinementList-checkbox {
+  margin-right: 8px;
+}
+
+.ais-RefinementList-count {
+  margin-left: 6px;
+  padding: 2px 6px;
+  border-radius: 12px;
+  background-color: #f0f0f0;
+  font-size: 12px;
+  color: #666;
+}
+
+.ais-RefinementList-showMore {
+  background: none;
+  border: none;
+  color: #2563eb;
+  cursor: pointer;
+  padding: 4px 0;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.ais-RefinementList-showMore:hover {
+  text-decoration: underline;
+}
+
+/* Resultados */
+.ais-Hits-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ais-Hits-item {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+}
+
+/* Cartão de filme */
+.movie-card {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.movie-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.movie-poster {
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.movie-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.movie-card:hover .movie-poster img {
+  transform: scale(1.05);
+}
+
+.movie-info {
+  padding: 16px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.movie-year {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.movie-rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.movie-rating .stars {
+  color: #f59e0b;
+  margin-right: 4px;
+}
+
+.movie-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: auto;
+}
+
+.movie-genre {
+  background-color: #f3f4f6;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+/* Paginação */
+.ais-Pagination {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.ais-Pagination-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 4px;
+}
+
+.ais-Pagination-item {
+  margin: 0;
+}
+
+.ais-Pagination-link {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.ais-Pagination-item--selected .ais-Pagination-link {
+  background-color: #2563eb;
+  border-color: #2563eb;
+  color: white;
+  font-weight: 600;
+}
+
+.ais-Pagination-item--disabled .ais-Pagination-link {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ais-Pagination-link:hover:not(.ais-Pagination-item--disabled .ais-Pagination-link) {
+  background-color: #f3f4f6;
+  border-color: #ccc;
+}
+
+.ais-Pagination-item--selected .ais-Pagination-link:hover {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .instant-search-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .search-filters {
+    margin-right: 0;
+    margin-bottom: 24px;
+  }
+  
+  .ais-Hits-list {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+  
+  .movie-poster {
+    height: 240px;
+  }
+} 

@@ -58,19 +58,24 @@ export default function AutoCompletePosts() {
         return (
             <BaseAutoComplete
                 openOnFocus={true}
-                placeholder="Search in posts..."
+                placeholder="Buscar posts..."
                 getSources={({ query }) => [
                     {
                         sourceId: 'posts',
                         getItems() {
                             try {
-                                const indexName = buildIndexName() || 'default_posts';
+                                const indexName = buildIndexName() || 'development_posts';
                                 return getAlgoliaResults({
                                     searchClient,
                                     queries: [
                                         {
                                             indexName,
-                                            query
+                                            query,
+                                            params: {
+                                                hitsPerPage: 5,
+                                                attributesToSnippet: ['title:10', 'excerpt:35'],
+                                                snippetEllipsisText: '...'
+                                            }
                                         }
                                     ]
                                 });
@@ -129,10 +134,35 @@ export function ResultItem({ hit, components }) {
     return (
         <a href={hit.url} className="aa-ItemLink">
             <div className="aa-ItemContent">
-                <div className="aa-ItemTitle">
-                    {components.Highlight && hit.title 
-                        ? <components.Highlight hit={hit} attribute="title" />
-                        : hit.title || 'Sem título'}
+                <div className="aa-ItemIcon aa-ItemIcon--alignTop">
+                    {hit.featuredImage && (
+                        <img 
+                            src={hit.featuredImage} 
+                            alt={hit.title || ''} 
+                            width="40" 
+                            height="40"
+                            style={{ objectFit: 'cover', borderRadius: '4px' }}
+                        />
+                    )}
+                </div>
+                <div className="aa-ItemContentBody">
+                    <div className="aa-ItemTitle">
+                        {components.Highlight && hit.title 
+                            ? <components.Highlight hit={hit} attribute="title" />
+                            : hit.title || 'Sem título'}
+                    </div>
+                    {hit.excerpt && (
+                        <div className="aa-ItemDescription">
+                            {components.Highlight 
+                                ? <components.Highlight hit={hit} attribute="excerpt" />
+                                : hit.excerpt}
+                        </div>
+                    )}
+                    {hit.date && (
+                        <div className="aa-ItemDate text-xs text-gray-500 mt-1">
+                            {new Date(hit.date).toLocaleDateString('pt-BR')}
+                        </div>
+                    )}
                 </div>
             </div>
         </a>

@@ -4,21 +4,29 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "start": "next start"
+        "start": "next start",
+        "index-algolia": "node -r esm scripts/index-algolia.js",
+        "index-movies": "node scripts/index-movies.js",
+        "index-content": "node scripts/index-content.js"
     },
     "dependencies": {
         "@algolia/autocomplete-js": "^1.17.1",
         "@algolia/autocomplete-theme-classic": "^1.17.1",
         "algoliasearch": "^4.24.0",
+        "axios": "^0.21.4",
         "classnames": "^2.5.1",
         "dayjs": "^1.11.11",
+        "dotenv": "^16.5.0",
+        "esm": "^3.2.25",
         "front-matter": "^4.0.2",
         "glob": "^10.4.2",
+        "instantsearch.js": "^4.78.1",
         "markdown-to-jsx": "^7.7.3",
         "marked": "^14.1.2",
         "next": "^13.4.19",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-instantsearch-dom": "^6.40.4",
         "swiper": "^11.1.4",
         "tailwindcss": "^3.4.3"
     },
@@ -33,5 +41,6 @@
         "prettier": "^3.3.2",
         "typescript": "^5.6.2"
     },
-    "main": "next.config.js"
+    "main": "next.config.js",
+    "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
