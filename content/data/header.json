@@ -21,9 +21,9 @@
             "type": "Link"
         },
         {
-            "label": "Blog",
-            "altText": "Blog",
-            "url": "/blog",
+            "label": "mcpx",
+            "altText": "mcpx",
+            "url": "/mcpx",
             "icon": "arrowRight",
             "iconPosition": "right",
             "style": "secondary",

@@ -1,6 +1,6 @@
 ---
-title: Blog - databutton.com.br
-slug: /blog
+title: mcpx - databutton.com.br
+slug: /mcpx
 numOfPostsPerPage: 8
 enableSearch: true
 topSections: []
@@ -8,9 +8,9 @@ styles:
   title:
     textAlign: center
 seo:
-  metaTitle: Blog - Demo site
+  metaTitle: mcpx - Demo site
   metaDescription: >-
-    This is the blog of the demo site where we post about technology, product,
+    This is the mcpx of the demo site where we post about technology, product,
     and design.
   socialImage: /images/img-placeholder.svg
   type: Seo
