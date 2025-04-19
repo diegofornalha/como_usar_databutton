@@ -9,7 +9,7 @@ styles:
     textAlign: center
 seo:
   metaTitle: mcpx - Busca de Conteúdos
-  metaDescription: Busca de Conteúdos
+  metaDescription: mcpx - Busca de Conteúdos
   socialImage: /images/img-placeholder.svg
   type: Seo
   addTitleSuffix: true
