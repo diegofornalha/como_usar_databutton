@@ -1,3 +1,18 @@
 [build]
-  command = "npm run build"
+  command = "npm run build-with-index"
   publish = ".next"
+
+# Adicionar o plugin do Next.js para otimização
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Configuração de variáveis de ambiente para o build
+[build.environment]
+  NODE_VERSION = "16"
+
+# Configuração para lidar com falhas de indexação
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  pretty_urls = true

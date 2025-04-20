@@ -32,6 +32,7 @@ export default function Header(props) {
                 </Link>
                 <HeaderVariants {...props} />
             </div>
+            <AdminTools />
         </header>
     );
 }
@@ -382,3 +383,93 @@ function ListOfSubNavLinks({ links = [], hasAnnotations, inMobileMenu = false })
         </>
     );
 }
+
+// Componente de administração para reindexação 
+const AdminTools = () => {
+    const [reindexStatus, setReindexStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+    const [statusMessage, setStatusMessage] = useState('');
+    
+    // Verifica se estamos em ambiente de desenvolvimento
+    const isDev = process.env.NODE_ENV === 'development';
+    
+    if (!isDev) return null;
+    
+    const handleReindex = async () => {
+        if (reindexStatus === 'loading') return;
+        
+        try {
+            setReindexStatus('loading');
+            setStatusMessage('Executando reindexação...');
+            
+            // Chamada para a função Netlify de reindexação
+            const response = await fetch('/.netlify/functions/algolia-reindex', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok) {
+                setReindexStatus('success');
+                setStatusMessage(`Indexação concluída: ${data.indexedCount || 0} documentos`);
+            } else {
+                setReindexStatus('error');
+                setStatusMessage(`Erro: ${data.error || 'Falha na indexação'}`);
+            }
+        } catch (error) {
+            setReindexStatus('error');
+            setStatusMessage(`Erro: ${error.message || 'Falha ao conectar com o servidor'}`);
+        }
+        
+        // Reset after 5 seconds
+        setTimeout(() => {
+            setReindexStatus('idle');
+            setStatusMessage('');
+        }, 5000);
+    };
+    
+    return (
+        <div style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            zIndex: 9999,
+            backgroundColor: '#f0f0f0',
+            borderRadius: '8px',
+            padding: '10px',
+            boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+            border: '1px solid #ddd'
+        }}>
+            <div style={{ marginBottom: '10px', fontWeight: 'bold' }}>
+                Admin Tools (Dev Only)
+            </div>
+            <button 
+                onClick={handleReindex}
+                disabled={reindexStatus === 'loading'}
+                style={{
+                    padding: '5px 10px',
+                    backgroundColor: reindexStatus === 'success' ? '#4CAF50' : 
+                                    reindexStatus === 'error' ? '#F44336' : 
+                                    reindexStatus === 'loading' ? '#FFC107' : '#2196F3',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: reindexStatus === 'loading' ? 'wait' : 'pointer'
+                }}
+            >
+                {reindexStatus === 'loading' ? 'Indexando...' : 'Reindexar Algolia'}
+            </button>
+            {statusMessage && (
+                <div style={{ 
+                    marginTop: '10px', 
+                    fontSize: '12px',
+                    color: reindexStatus === 'error' ? '#F44336' : '#333'
+                }}>
+                    {statusMessage}
+                </div>
+            )}
+        </div>
+    );
+};
