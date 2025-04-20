@@ -15,7 +15,7 @@ featuredImage:
       borderRadius: medium
 bottomSections: []
 isFeatured: true
-isDraft: true
+isDraft: false
 seo:
   metaTitle: O que é MCPX? - Protocolo de Contexto de Modelo Executável
   metaDescription: >-
