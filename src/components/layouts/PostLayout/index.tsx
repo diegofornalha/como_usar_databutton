@@ -5,12 +5,13 @@ import Markdown from 'markdown-to-jsx';
 import { getBaseLayoutComponent } from '../../../utils/base-layout';
 import { getComponent } from '../../components-registry';
 import Link from '../../atoms/Link';
+import RelatedPostsSection from '../../sections/RelatedPostsSection';
 
 export default function PostLayout(props) {
     const { page, site } = props;
     const BaseLayout = getBaseLayoutComponent(page.baseLayout, site.baseLayout);
     const { enableAnnotations = true } = site;
-    const { title, date, author, markdown_content, bottomSections = [] } = page;
+    const { title, date, author, markdown_content, bottomSections = [], categories = [], slug } = page;
     const dateTimeAttr = dayjs(date).format('YYYY-MM-DD HH:mm:ss');
     const formattedDate = dayjs(date).format('YYYY-MM-DD');
 
@@ -44,6 +45,18 @@ export default function PostLayout(props) {
                         )}
                     </div>
                 </article>
+                
+                {/* Related Posts Section - Adicionado automaticamente */}
+                {categories && categories.length > 0 && (
+                    <RelatedPostsSection
+                        title="Posts Relacionados"
+                        colors={page.colors || 'bg-light-fg-dark'}
+                        currentPostCategories={categories}
+                        currentPostSlug={slug}
+                        limit={3}
+                    />
+                )}
+                
                 {bottomSections.length > 0 && (
                     <div {...(enableAnnotations && { 'data-sb-field-path': 'bottomSections' })}>
                         {bottomSections.map((section, index) => {

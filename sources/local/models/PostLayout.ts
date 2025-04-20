@@ -57,6 +57,19 @@ export const PostLayout: Model = {
             models: ['Person']
         },
         {
+            type: 'list',
+            name: 'categories',
+            label: 'Categories',
+            description: 'Categories for this post, used for related posts recommendations',
+            required: false,
+            hidden: false,
+            localized: false,
+            items: {
+                type: 'string'
+            },
+            group: 'settings'
+        },
+        {
             type: 'string',
             name: 'excerpt',
             label: 'Excerpt',

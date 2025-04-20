@@ -16,6 +16,12 @@ featuredImage:
 bottomSections: []
 isFeatured: false
 isDraft: false
+categories:
+  - databutton
+  - ia
+  - no-code
+  - desenvolvimento de software
+  - ai developer
 seo:
   metaTitle: Databutton - Desenvolvimento de Software com Inteligência Artificial
   metaDescription: >-
@@ -28,12 +34,6 @@ styles:
   self:
     flexDirection: col
 author: content/data/diegofornalha.json # Mantendo o autor
-categories: # Adicionando categorias
-  - databutton
-  - ia
-  - no-code
-  - desenvolvimento de software
-  - ai developer
 ---
 
 Databutton se apresenta como o "primeiro desenvolvedor IA com raciocínio" ([databutton.com](https://databutton.com.br/)), uma plataforma projetada para transformar ideias de software em aplicações funcionais, especialmente para aqueles sem um background técnico profundo. A proposta é atuar como um parceiro tecnológico, um "CTO de IA", que colabora com você para construir o software que você precisa.
