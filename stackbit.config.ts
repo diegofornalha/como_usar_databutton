@@ -19,6 +19,11 @@ export const config = defineStackbitConfig({
     ssgName: 'nextjs',
     nodeVersion: '18',
     styleObjectModelName: 'ThemeStyle',
+    customContentReload: false,
+    models: {
+        page: { type: 'page', urlPath: '/{slug}' },
+        post: { type: 'page', urlPath: '/mcpx/{slug}' }
+    },
     contentSources: [gitContentSource],
     presetSource: {
         type: 'files',
