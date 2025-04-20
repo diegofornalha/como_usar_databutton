@@ -88,13 +88,15 @@ const SearchComponent = () => {
           <SearchBox
             className="searchbox"
             translations={{
-              placeholder: 'Buscar conteúdo...',
+              placeholder: 'Buscar artigos...',
               submitTitle: 'Enviar sua busca',
               resetTitle: 'Limpar sua busca',
             }}
           />
           
-          <Configure hitsPerPage={5} />
+          <Configure 
+            hitsPerPage={6}
+          />
           
           <div className="search-results">
             <Hits hitComponent={Hit} />
@@ -144,6 +146,7 @@ const SearchComponent = () => {
           border-radius: 8px;
           overflow: hidden;
           transition: transform 0.2s, box-shadow 0.2s;
+          background-color: white;
         }
         
         .search-result-card:hover {
@@ -200,6 +203,19 @@ const SearchComponent = () => {
           color: inherit;
           padding: 0 2px;
           border-radius: 2px;
+        }
+
+        .ais-Hits-list {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          gap: 20px;
+          list-style: none;
+          padding: 0;
+        }
+
+        .ais-Hits-item {
+          margin: 0;
+          padding: 0;
         }
       `}</style>
     </div>

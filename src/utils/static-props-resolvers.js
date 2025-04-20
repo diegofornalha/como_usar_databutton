@@ -9,33 +9,60 @@ import {
     mapDeepAsync
 } from './data-utils';
 
-export function resolveStaticProps(urlPath, data) {
-    // get root path of paged path: /mcpx/page/2 => /mcpx
-    const rootUrlPath = getRootPagePath(urlPath);
-    const { __metadata, ...rest } = data.pages.find((page) => page.__metadata.urlPath === rootUrlPath);
+export async function resolveStaticProps(urlPath, data) {
+    console.log('🔍 resolveStaticProps:', {
+        urlPath: urlPath,
+        availablePages: data.pages.map(p => ({
+            type: p.__metadata?.modelName,
+            slug: p.slug,
+            urlPath: p.__metadata?.urlPath
+        }))
+    });
+
+    const rootPath = getRootPagePath(urlPath);
+    console.log('📂 Root path:', rootPath);
+
+    const page = data.pages.find((page) => page.__metadata?.urlPath === rootPath);
+    console.log('📄 Página encontrada:', {
+        exists: !!page,
+        type: page?.__metadata?.modelName,
+        slug: page?.slug,
+        urlPath: page?.__metadata?.urlPath
+    });
+
+    if (!page) {
+        console.log('❌ Página não encontrada para rootPath:', rootPath);
+        return null;
+    }
+
     const props = {
-        page: {
-            __metadata: {
-                ...__metadata,
-                // override urlPath in metadata with paged path: /mcpx => /mcpx/page/2
-                urlPath
-            },
-            ...rest
-        },
-        ...data.props
+        page: page,
+        site: data.site || {}
     };
-    return mapDeepAsync(
-        props,
-        async (value, keyPath, stack) => {
-            const objectType = value?.__metadata?.modelName;
-            if (objectType && StaticPropsResolvers[objectType]) {
-                const resolver = StaticPropsResolvers[objectType];
-                return resolver(value, data, { keyPath, stack });
-            }
-            return value;
-        },
-        { postOrder: true }
-    );
+
+    console.log('🔄 Resolvendo referências para:', {
+        type: page.__metadata?.modelName,
+        slug: page.slug
+    });
+
+    const resolvedProps = await mapDeepAsync(props, async (value) => {
+        if (value && value.__metadata && value.__metadata.modelName) {
+            console.log('🔗 Resolvendo referência:', {
+                type: value.__metadata.modelName,
+                id: value.__metadata.id
+            });
+            return resolveReferences(value, ['author', 'category'], data.objects);
+        }
+        return value;
+    });
+
+    console.log('✅ Props resolvidas:', {
+        hasPage: !!resolvedProps.page,
+        pageType: resolvedProps.page?.__metadata?.modelName,
+        pageSlug: resolvedProps.page?.slug
+    });
+
+    return resolvedProps;
 }
 
 const StaticPropsResolvers = {

@@ -1,16 +1,38 @@
 import { getAllNonFeaturedPostsSorted, getAllCategoryPostsSorted, generatePagedPathsForPage, isPublished } from './data-utils';
 
 export function resolveStaticPaths({ pages, objects }) {
+    console.log('📄 Páginas disponíveis:', pages.map(p => ({
+        type: p.__metadata?.modelName,
+        slug: p.slug,
+        urlPath: p.__metadata?.urlPath
+    })));
+    
     return pages.reduce((paths, page) => {
         if (!process.env.stackbitPreview && page.isDraft) {
             return paths;
         }
         const objectType = page.__metadata?.modelName;
         const pageUrlPath = page.__metadata?.urlPath;
+        console.log(`🛣️ Processando página:`, {
+            type: objectType,
+            urlPath: pageUrlPath
+        });
+        
         if (objectType && StaticPathsResolvers[objectType]) {
             const resolver = StaticPathsResolvers[objectType];
-            return paths.concat(resolver(page, objects));
+            const resolvedPaths = resolver(page, objects);
+            console.log(`📌 Paths resolvidos para ${objectType}:`, resolvedPaths);
+            return paths.concat(resolvedPaths);
         }
+        
+        // Para PostLayout, gerar tanto o path antigo quanto o novo
+        if (objectType === 'PostLayout') {
+            const oldPath = pageUrlPath.replace('/content/', '/');
+            console.log(`📌 Paths para PostLayout:`, [oldPath, pageUrlPath]);
+            return paths.concat([oldPath, pageUrlPath]);
+        }
+        
+        console.log(`📌 Path direto:`, pageUrlPath);
         return paths.concat(pageUrlPath);
     }, []);
 }

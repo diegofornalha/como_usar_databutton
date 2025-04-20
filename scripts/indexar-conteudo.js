@@ -13,6 +13,9 @@ const client = algoliasearch(
 const indexName = 'development_mcpx_content';
 const index = client.initIndex(indexName);
 
+// Diretório base para conteúdo
+const CONTENT_BASE_DIR = 'content/pages';
+
 async function indexarConteudo() {
   try {
     // Configurar os atributos pesquisáveis e filtráveis
@@ -24,58 +27,72 @@ async function indexarConteudo() {
         'categories'
       ],
       attributesForFaceting: [
-        'categories'
+        'categories',
+        'type'
       ],
       customRanking: [
         'desc(date)'
       ]
     });
 
-    // Diretório onde estão os arquivos MCPX
-    const mcpxDir = path.join(process.cwd(), 'content', 'pages', 'mcpx');
-    
-    // Array para armazenar os objetos a serem indexados
     const objects = [];
+    const baseDirPath = path.join(process.cwd(), CONTENT_BASE_DIR);
 
-    // Ler arquivos diretamente da pasta mcpx
-    const files = fs.readdirSync(mcpxDir);
-    
-    files.forEach(file => {
-      // Ignorar o index.md
-      if (file === 'index.md') {
-        return;
-      }
+    if (!fs.existsSync(baseDirPath)) {
+      console.log(`❌ Diretório base ${CONTENT_BASE_DIR} não encontrado`);
+      return;
+    }
 
-      const filePath = path.join(mcpxDir, file);
-      const stat = fs.statSync(filePath);
+    // Listar todos os diretórios dentro de pages
+    const directories = fs.readdirSync(baseDirPath)
+      .filter(item => {
+        const itemPath = path.join(baseDirPath, item);
+        return fs.statSync(itemPath).isDirectory();
+      });
 
-      if (!stat.isDirectory() && file.endsWith('.md')) {
-        const content = fs.readFileSync(filePath, 'utf-8');
-        const { attributes, body } = matter(content);
-        
-        // Gerar slug a partir do nome do arquivo
-        const slug = path.basename(file, '.md');
-        
-        // Criar permalink no formato correto /mcpx/[slug]
-        const permalink = `/mcpx/${slug}`;
+    console.log(`📁 Diretórios encontrados: ${directories.join(', ')}`);
 
-        // Criar objeto para indexação
-        const object = {
-          objectID: `mcpx_${slug}`,
-          title: attributes.title || '',
-          content: body,
-          excerpt: attributes.excerpt || body.substring(0, 160) + '...',
-          date: attributes.date ? new Date(attributes.date).getTime() : null,
-          categories: attributes.categories || [],
-          permalink: permalink,
-          featuredImage: attributes.featuredImage?.url || null,
-          author: attributes.author || null,
-          timeToRead: Math.ceil(body.split(/\s+/).length / 200) // Estimativa de tempo de leitura
-        };
+    // Processar cada diretório
+    for (const dir of directories) {
+      const dirPath = path.join(baseDirPath, dir);
+      const files = fs.readdirSync(dirPath);
 
-        objects.push(object);
-      }
-    });
+      files.forEach(file => {
+        // Ignorar arquivos index.md
+        if (file === 'index.md') {
+          return;
+        }
+
+        const filePath = path.join(dirPath, file);
+        const stat = fs.statSync(filePath);
+
+        if (!stat.isDirectory() && file.endsWith('.md')) {
+          const content = fs.readFileSync(filePath, 'utf-8');
+          const { attributes, body } = matter(content);
+          
+          // Gerar slug e permalink
+          const slug = attributes.slug || path.basename(file, '.md');
+          const permalink = `/content/${dir}/${slug}`;
+
+          // Criar objeto para indexação
+          const object = {
+            objectID: `${dir}_${slug}`,
+            title: attributes.title || '',
+            content: body,
+            excerpt: attributes.excerpt || body.substring(0, 160) + '...',
+            date: attributes.date ? new Date(attributes.date).getTime() : null,
+            categories: attributes.categories || [],
+            type: dir, // Usar o nome do diretório como tipo
+            permalink: permalink,
+            featuredImage: attributes.featuredImage?.url || attributes.media?.url || null,
+            author: attributes.author || null,
+            timeToRead: Math.ceil(body.split(/\s+/).length / 200)
+          };
+
+          objects.push(object);
+        }
+      });
+    }
 
     // Indexar os objetos no Algolia
     if (objects.length > 0) {
@@ -83,12 +100,12 @@ async function indexarConteudo() {
       console.log(`✅ Indexados ${objectIDs.length} documentos no Algolia`);
       console.log('📄 Documentos indexados:');
       objects.forEach(obj => {
-        console.log(`- ${obj.title}`);
+        console.log(`- [${obj.type}] ${obj.title}`);
         console.log(`  URL: ${obj.permalink}`);
         console.log('---');
       });
     } else {
-      console.log('⚠️ Nenhum conteúdo encontrado para indexar na pasta mcpx');
+      console.log('⚠️ Nenhum conteúdo encontrado para indexar');
     }
 
   } catch (error) {
