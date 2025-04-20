@@ -52,8 +52,7 @@ O MCPX (Model Context Protocol eXtended) é um protocolo avançado que estende a
 
 ## Como Implementar
 
-1.  **Configuração do Servidor MCPX**
-    ```javascript
+1.  ```javascript
     {
       "security": {
         "authToken": "required",
@@ -93,11 +92,4 @@ O MCPX (Model Context Protocol eXtended) é um protocolo avançado que estende a
     *   Funcionalidades estendidas
     *   Respostas mais precisas
     *   Experiência aprimorada
-
-## Próximos Passos
-
-1.  Configure seu servidor MCPX
-2.  Defina suas ferramentas necessárias
-3.  Implemente autenticação
-4.  Monitore e ajuste a configuração
 
