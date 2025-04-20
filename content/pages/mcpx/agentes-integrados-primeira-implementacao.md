@@ -57,7 +57,7 @@ seo:
   type: Seo
   metaTitle: Agentes Integrados
   metaDescription: Agentes Integrados
-  addTitleSuffix: false
+  addTitleSuffix: true
   metaTags:
     - type: MetaTag
       property: 'og:title'
