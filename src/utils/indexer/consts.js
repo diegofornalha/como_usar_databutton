@@ -7,6 +7,11 @@ export const ALGOLIA_ADMIN_API_KEY = process.env.ALGOLIA_ADMIN_API_KEY || '';
 export const ENV_NAME = process.env.NODE_ENV || 'development';
 
 export function buildIndexName() {
+    // Conforme especificado na documentação, sempre usar o nome fixo "development_mcpx_content"
+    return 'development_mcpx_content';
+    
+    // Código anterior comentado abaixo:
+    /*
     if (!ALGOLIA_INDEX_NAME_SUFFIX) {
         return null;
     }
@@ -18,4 +23,5 @@ export function buildIndexName() {
     
     const indexName = ENV_NAME + '_' + ALGOLIA_INDEX_NAME_SUFFIX;
     return indexName;
+    */
 }
