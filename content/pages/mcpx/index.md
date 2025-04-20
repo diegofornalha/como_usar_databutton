@@ -8,4 +8,5 @@ isDraft: false
 seo:
   type: Seo
   metaTitle: Busca de Conteúdo MCPX
+  metaDescription: Busca de Conteúdo MCPX
 ---
