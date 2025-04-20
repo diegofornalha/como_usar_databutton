@@ -66,15 +66,11 @@ styles:
 ---
 Pra quem está entrando no mundo dos agentes de IA pode iniciar assim:
 
-
-
 1.  Com **automação simples**
 
 2.  Evoluir para **fluxos de trabalho de IA** quando precisar de mais flexibilidade e controle
 
 3.  Só depois utilize **agentes de IA** quando precisar de **alta adaptabilidade**
-
-
 
 ```
 Automação: 
@@ -82,4 +78,28 @@ Automação:
 
 Entrega **resultados altamente consistentes e previsíveis**. Ideal para **processos críticos**, onde erros não são tolerados e a previsibilidade é essencial.
 
+Entrega **resultados altamente consistentes e previsíveis**. Ideal para **processos críticos**, onde erros não são tolerados e a previsibilidade é essencial.
 
+Requer **dados rigidamente estruturados**, com formato pré-definido. 
+
+Você toma **todas as decisões** de forma antecipada ao criar a automação. Depois disso, **nenhuma intervenção humana é necessária**.
+
+```
+Fluxo de trabalho de IA: 
+```
+
+Gera resultados **geralmente confiáveis**, com **pequenas variações** em casos extremos. Equilibra **flexibilidade com limites de segurança** para evitar grandes erros.
+
+Trabalha com dados **principalmente estruturados**, aceitando alguma variação. **Consegue se ajustar** a pequenas mudanças nos parâmetros, mas precisa de orientação em mudanças maiores.
+
+Você define os **limites** dentro dos quais a IA pode operar. Humanos **revisam ou intervêm ocasionalmente**, especialmente em casos extremos.
+
+```
+Agente de IA: 
+```
+
+Ideal para **exploração e descoberta de soluções novas**, quando a **adaptação importa mais do que a consistência**. 
+
+Lida com dados **não estruturados e variados** de múltiplas fontes. **Adapta-se de forma autônoma** a diferentes entradas e ambientes, sem necessidade de reprogramação.
+
+Você define **objetivos de alto nível** e a IA determina **como alcançá-los**
