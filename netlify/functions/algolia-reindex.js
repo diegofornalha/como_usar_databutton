@@ -11,6 +11,57 @@ const { buildIndexName } = require('../../src/utils/indexer/consts');
 // Configuração para controle de acesso à função
 const WEBHOOK_SECRET = process.env.ALGOLIA_WEBHOOK_SECRET;
 
+// Função para obter todos os IDs de objetos atualmente no Algolia
+async function obterIdsObjetosExistentes(index) {
+  try {
+    console.log('🔍 Obtendo lista de objetos existentes no Algolia...');
+    
+    const idsExistentes = [];
+    
+    // Buscar todos os objetos do índice - usando método mais compatível
+    let page = 0;
+    let hits = [];
+    
+    do {
+      const { hits: resultados, nbPages } = await index.search('', {
+        page: page,
+        hitsPerPage: 1000, // Obter o máximo de resultados por página
+      });
+      
+      hits = resultados;
+      hits.forEach(hit => {
+        idsExistentes.push(hit.objectID);
+      });
+      
+      page++;
+      
+      // Sair do loop quando chegarmos à última página
+      if (page >= nbPages) break;
+      
+    } while (hits.length > 0);
+    
+    console.log(`✅ Encontrados ${idsExistentes.length} objetos no índice Algolia`);
+    return idsExistentes;
+  } catch (error) {
+    console.error('❌ Erro ao obter objetos existentes:', error.message);
+    return [];
+  }
+}
+
+// Função para identificar objetos a serem removidos (existem no Algolia mas não mais nos arquivos)
+function identificarObjetosParaRemover(idsExistentes, idsAtuais) {
+  // Filtrar IDs que existem no Algolia mas não estão mais na lista atual
+  const idsParaRemover = idsExistentes.filter(id => !idsAtuais.includes(id));
+  
+  if (idsParaRemover.length > 0) {
+    console.log(`🗑️ Encontrados ${idsParaRemover.length} objetos para remover do Algolia`);
+  } else {
+    console.log('✅ Nenhum objeto para remover do Algolia');
+  }
+  
+  return idsParaRemover;
+}
+
 // Função principal para indexação do conteúdo
 async function indexarConteudo() {
   // Log das variáveis de ambiente (apenas para debug)
@@ -56,7 +107,12 @@ async function indexarConteudo() {
       ]
     });
 
+    // 1. Obter lista de objetos existentes no Algolia
+    const idsExistentes = await obterIdsObjetosExistentes(index);
+    
+    // 2. Processar arquivos para obter objetos e IDs
     const objects = [];
+    const objectIDs = []; // Lista de IDs dos objetos atuais
     const baseDirPath = path.join(process.cwd(), CONTENT_BASE_DIR);
     const mcpxDirPath = path.join(baseDirPath, MCPX_DIR);
 
@@ -89,9 +145,15 @@ async function indexarConteudo() {
         // Usar o caminho sem o prefixo /content/ para mcpx
         const permalink = `/${MCPX_DIR}/${slug}`;
 
+        // Gerar objectID consistente
+        const objectID = `${MCPX_DIR}_${slug}`;
+        
+        // Adicionar à lista de IDs atuais
+        objectIDs.push(objectID);
+
         // Criar objeto para indexação
         const object = {
-          objectID: `${MCPX_DIR}_${slug}`,
+          objectID,
           title: attributes.title || '',
           content: body,
           excerpt: attributes.excerpt || body.substring(0, 160) + '...',
@@ -128,8 +190,14 @@ async function indexarConteudo() {
             // Usar o caminho sem o prefixo /content/ para mcpx
             const permalink = `/${MCPX_DIR}/${subdir}/${slug}`;
             
+            // Gerar objectID consistente
+            const objectID = `${MCPX_DIR}_${subdir}_${slug}`;
+            
+            // Adicionar à lista de IDs atuais
+            objectIDs.push(objectID);
+            
             const object = {
-              objectID: `${MCPX_DIR}_${subdir}_${slug}`,
+              objectID,
               title: attributes.title || '',
               content: body,
               excerpt: attributes.excerpt || body.substring(0, 160) + '...',
@@ -149,23 +217,35 @@ async function indexarConteudo() {
       }
     });
 
-    // Indexar os objetos no Algolia
+    // 3. Identificar objetos a serem removidos
+    const idsParaRemover = identificarObjetosParaRemover(idsExistentes, objectIDs);
+    
+    // 4. Remover objetos que não existem mais no sistema de arquivos
+    if (idsParaRemover.length > 0) {
+      console.log(`🗑️ Removendo ${idsParaRemover.length} objetos do Algolia...`);
+      await index.deleteObjects(idsParaRemover);
+    }
+
+    // 5. Indexar os objetos no Algolia
     if (objects.length > 0) {
-      const { objectIDs } = await index.saveObjects(objects);
-      console.log(`✅ Indexados ${objectIDs.length} documentos no Algolia`);
+      const { objectIDs: addedObjectIDs } = await index.saveObjects(objects);
+      console.log(`✅ Indexados ${addedObjectIDs.length} documentos no Algolia`);
       
       // Retornar detalhes para logging e debug
       return {
         success: true,
-        indexedCount: objectIDs.length,
+        indexedCount: addedObjectIDs.length,
+        removedCount: idsParaRemover.length,
         indexName: indexName,
         timestamp: new Date().toISOString()
       };
     } else {
       console.log('⚠️ Nenhum conteúdo encontrado para indexar');
       return {
-        success: false,
-        error: 'Nenhum conteúdo encontrado para indexar',
+        success: true,
+        indexedCount: 0,
+        removedCount: idsParaRemover.length,
+        message: 'Nenhum conteúdo encontrado para indexar',
         timestamp: new Date().toISOString()
       };
     }

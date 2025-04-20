@@ -35,15 +35,53 @@ const MCPX_DIR = 'mcpx';
 // Função de espera
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
+// Função para obter todos os IDs de objetos atualmente no Algolia
+async function obterIdsObjetosExistentes() {
+  try {
+    console.log('🔍 Obtendo lista de objetos existentes no Algolia...');
+    
+    const idsExistentes = [];
+    
+    // Buscar todos os objetos do índice - usando método mais compatível
+    let page = 0;
+    let hits = [];
+    
+    do {
+      const { hits: resultados, nbPages } = await index.search('', {
+        page: page,
+        hitsPerPage: 1000, // Obter o máximo de resultados por página
+      });
+      
+      hits = resultados;
+      hits.forEach(hit => {
+        idsExistentes.push(hit.objectID);
+      });
+      
+      page++;
+      
+      // Sair do loop quando chegarmos à última página
+      if (page >= nbPages) break;
+      
+    } while (hits.length > 0);
+    
+    console.log(`✅ Encontrados ${idsExistentes.length} objetos no índice Algolia`);
+    return idsExistentes;
+  } catch (error) {
+    console.error('❌ Erro ao obter objetos existentes:', error.message);
+    return [];
+  }
+}
+
 // Função para extrair objetos de documentos para indexação
 async function extrairObjetosParaIndexacao() {
   const objects = [];
+  const objectIDs = []; // Armazenar IDs de objetos extraídos
   const baseDirPath = path.join(process.cwd(), CONTENT_BASE_DIR);
   const mcpxDirPath = path.join(baseDirPath, MCPX_DIR);
 
   if (!fs.existsSync(mcpxDirPath)) {
     console.log(`❌ Diretório MCPX ${MCPX_DIR} não encontrado em ${CONTENT_BASE_DIR}`);
-    return [];
+    return { objects: [], objectIDs: [] };
   }
 
   console.log(`📁 Lendo artigos do diretório: ${MCPX_DIR}`);
@@ -71,9 +109,15 @@ async function extrairObjetosParaIndexacao() {
         // Usar o caminho sem o prefixo /content/ para mcpx
         const permalink = `/${MCPX_DIR}/${slug}`;
 
+        // Gerar ID único para o objeto
+        const objectID = `${MCPX_DIR}_${slug}`;
+        
+        // Adicionar o ID à lista de IDs ativos
+        objectIDs.push(objectID);
+
         // Criar objeto para indexação
         const object = {
-          objectID: `${MCPX_DIR}_${slug}`,
+          objectID,
           title: attributes.title || '',
           content: body,
           excerpt: attributes.excerpt || body.substring(0, 160) + '...',
@@ -115,8 +159,14 @@ async function extrairObjetosParaIndexacao() {
             // Usar o caminho sem o prefixo /content/ para mcpx
             const permalink = `/${MCPX_DIR}/${subdir}/${slug}`;
             
+            // Gerar ID único para o objeto
+            const objectID = `${MCPX_DIR}_${subdir}_${slug}`;
+            
+            // Adicionar o ID à lista de IDs ativos
+            objectIDs.push(objectID);
+            
             const object = {
-              objectID: `${MCPX_DIR}_${subdir}_${slug}`,
+              objectID,
               title: attributes.title || '',
               content: body,
               excerpt: attributes.excerpt || body.substring(0, 160) + '...',
@@ -140,7 +190,21 @@ async function extrairObjetosParaIndexacao() {
     }
   });
 
-  return objects;
+  return { objects, objectIDs };
+}
+
+// Função para identificar objetos a serem removidos (existem no Algolia mas não mais nos arquivos)
+function identificarObjetosParaRemover(idsExistentes, idsAtuais) {
+  // Filtrar IDs que existem no Algolia mas não estão mais na lista atual
+  const idsParaRemover = idsExistentes.filter(id => !idsAtuais.includes(id));
+  
+  if (idsParaRemover.length > 0) {
+    console.log(`🗑️ Encontrados ${idsParaRemover.length} objetos para remover do Algolia`);
+  } else {
+    console.log('✅ Nenhum objeto para remover do Algolia');
+  }
+  
+  return idsParaRemover;
 }
 
 // Função para salvar objetos no Algolia com retry
@@ -166,13 +230,6 @@ async function salvarNoAlgoliaComRetry(objects) {
         console.log('---');
       });
       
-      // Salvar registro de indexação bem-sucedida (pode ser usado para verificação posterior)
-      salvarRegistroDeIndexacao({
-        success: true,
-        count: objectIDs.length,
-        timestamp: new Date().toISOString()
-      });
-      
       return true;
     } catch (error) {
       ultimoErro = error;
@@ -187,14 +244,40 @@ async function salvarNoAlgoliaComRetry(objects) {
   
   // Se chegou aqui, todas as tentativas falharam
   console.error(`❌ Falha após ${MAX_RETRIES} tentativas. Último erro:`, ultimoErro.message);
+  return false;
+}
+
+// Função para remover objetos do Algolia com retry
+async function removerDoAlgoliaComRetry(objectIDs) {
+  if (objectIDs.length === 0) return true;
   
-  // Salvar registro de falha
-  salvarRegistroDeIndexacao({
-    success: false,
-    error: ultimoErro.message,
-    timestamp: new Date().toISOString()
-  });
+  let tentativa = 0;
+  let ultimoErro = null;
+
+  while (tentativa < MAX_RETRIES) {
+    try {
+      tentativa++;
+      console.log(`🔄 Tentativa ${tentativa} de remoção no Algolia...`);
+
+      await index.deleteObjects(objectIDs);
+      
+      console.log(`\n✅ Removidos ${objectIDs.length} documentos do Algolia`);
+      console.log('🗑️ IDs removidos:', objectIDs);
+      
+      return true;
+    } catch (error) {
+      ultimoErro = error;
+      console.error(`❌ Erro na tentativa ${tentativa} de remoção:`, error.message);
+      
+      if (tentativa < MAX_RETRIES) {
+        console.log(`⏳ Aguardando ${RETRY_DELAY/1000} segundos antes de tentar novamente...`);
+        await sleep(RETRY_DELAY);
+      }
+    }
+  }
   
+  // Se chegou aqui, todas as tentativas falharam
+  console.error(`❌ Falha após ${MAX_RETRIES} tentativas de remoção. Último erro:`, ultimoErro.message);
   return false;
 }
 
@@ -251,23 +334,38 @@ async function indexarConteudo() {
       ]
     });
 
-    // Extrair objetos para indexação
-    const objects = await extrairObjetosParaIndexacao();
+    // 1. Obter lista de objetos existentes no Algolia
+    const idsExistentes = await obterIdsObjetosExistentes();
+    
+    // 2. Extrair objetos dos arquivos Markdown
+    const { objects, objectIDs } = await extrairObjetosParaIndexacao();
+    
+    // 3. Identificar objetos a serem removidos
+    const idsParaRemover = identificarObjetosParaRemover(idsExistentes, objectIDs);
+    
+    let sucessoRemocao = true;
+    let sucessoIndexacao = true;
+    
+    // 4. Remover objetos que não existem mais
+    if (idsParaRemover.length > 0) {
+      sucessoRemocao = await removerDoAlgoliaComRetry(idsParaRemover);
+    }
 
-    // Indexar os objetos no Algolia com retry
+    // 5. Indexar os objetos atuais no Algolia com retry
     if (objects.length > 0) {
-      await salvarNoAlgoliaComRetry(objects);
+      sucessoIndexacao = await salvarNoAlgoliaComRetry(objects);
     } else {
       console.log('⚠️ Nenhum conteúdo encontrado para indexar');
-      
-      // Salvar registro de nenhum conteúdo
-      salvarRegistroDeIndexacao({
-        success: true,
-        count: 0,
-        message: 'Nenhum conteúdo encontrado para indexar',
-        timestamp: new Date().toISOString()
-      });
     }
+    
+    // 6. Salvar registro do processo de sincronização
+    salvarRegistroDeIndexacao({
+      success: sucessoIndexacao && sucessoRemocao,
+      adicionados: objects.length,
+      removidos: idsParaRemover.length,
+      total: idsExistentes.length - idsParaRemover.length + objects.length,
+      timestamp: new Date().toISOString()
+    });
 
   } catch (error) {
     console.error('❌ Erro ao indexar conteúdo:', error);

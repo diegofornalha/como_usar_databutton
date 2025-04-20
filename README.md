@@ -29,12 +29,18 @@ Este projeto inclui um sistema automatizado de indexação do conteúdo no Algol
    - Este comando compila o site Next.js e em seguida executa o script de indexação (`scripts/indexar-conteudo.js`)
    - O script lê os arquivos Markdown em `content/pages/mcpx/`, extrai seus metadados e conteúdo, e envia para o Algolia
 
-2. **Recursos de confiabilidade:**
+2. **Suporte completo a CRUD:**
+   - **Create/Update:** Novos artigos ou modificações são indexados automaticamente
+   - **Read:** A busca do site lê dados do Algolia para mostrar resultados
+   - **Delete:** Quando um artigo é removido do repositório, ele também é removido do índice Algolia
+   - O sistema sincroniza completamente os artigos do repositório Git com o índice do Algolia
+
+3. **Recursos de confiabilidade:**
    - Retry automático em caso de falhas temporárias na API do Algolia (até 3 tentativas)
    - Tratamento de erros robusto para evitar falhas completas no build
    - Registro detalhado do processo de indexação
 
-3. **Ferramentas de administração:**
+4. **Ferramentas de administração:**
    - API de reindexação manual via Netlify Functions (`/.netlify/functions/algolia-reindex`)
    - API de verificação de status do índice (`/.netlify/functions/algolia-status`)
    - Interface visual para reindexação manual (disponível apenas em ambiente de desenvolvimento)
