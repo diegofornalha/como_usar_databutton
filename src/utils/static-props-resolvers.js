@@ -35,6 +35,14 @@ export async function resolveStaticProps(urlPath, data) {
         return null;
     }
 
+    // Adicionando um autor padrão se for PostLayout
+    if (page.__metadata?.modelName === 'PostLayout' && !page.author) {
+        const defaultAuthor = data.objects.find((obj) => obj.__metadata?.id === 'content/data/diegofornalha.json');
+        if (defaultAuthor) {
+            page.author = 'content/data/diegofornalha.json';
+        }
+    }
+
     const props = {
         page: page,
         site: data.site || {}

@@ -113,6 +113,13 @@ export function mapObjectsById(objectIds, objects, debugContext) {
 
 export function findObjectById(objectId, objects, debugContext) {
     if (!objectId) {
+        // Para o campo author, retorna o autor padrão quando não definido
+        if (debugContext?.keyPath?.includes('author')) {
+            const defaultAuthor = objects.find((obj) => obj.__metadata?.id === 'content/data/diegofornalha.json');
+            if (defaultAuthor) {
+                return defaultAuthor;
+            }
+        }
         return null;
     }
     const object = objects.find((object) => object.__metadata?.id === objectId) || null;
@@ -137,6 +144,14 @@ export function findObjectById(objectId, objects, debugContext) {
     // Se estamos em modo de preview e não encontramos o objeto, 
     // criamos um objeto temporário para evitar erros
     if (!object && process.env.stackbitPreview) {
+        // Para o campo author, usar o autor padrão quando não encontrado
+        if (debugContext?.keyPath?.includes('author')) {
+            const defaultAuthor = objects.find((obj) => obj.__metadata?.id === 'content/data/diegofornalha.json');
+            if (defaultAuthor) {
+                return defaultAuthor;
+            }
+        }
+        
         // Criando um objeto temporário com o ID
         return {
             __metadata: {
