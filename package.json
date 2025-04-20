@@ -4,6 +4,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
+        "build-with-index": "next build && node scripts/indexar-conteudo.js",
         "start": "next start",
         "index-content": "node scripts/indexar-conteudo.js"
     },
