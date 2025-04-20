@@ -7,4 +7,5 @@ slug: nova pág
 isDraft: false
 seo:
   type: Seo
+  metaTitle: Busca de Conteúdo MCPX
 ---
