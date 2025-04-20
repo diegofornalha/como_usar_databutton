@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import algoliasearch from 'algoliasearch/lite';
-import { InstantSearch, SearchBox, Hits, Highlight, Configure } from 'react-instantsearch-dom';
+import { InstantSearch, SearchBox, Hits, Highlight, Configure, Stats, Pagination } from 'react-instantsearch-dom';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
@@ -98,8 +98,42 @@ const SearchComponent = () => {
             hitsPerPage={6}
           />
           
+          <div className="search-stats">
+            <Stats
+              translations={{
+                stats(nbHits, processingTimeMS) {
+                  return nbHits === 0
+                    ? 'Nenhum resultado encontrado'
+                    : `${nbHits} ${nbHits === 1 ? 'resultado' : 'resultados'} encontrados em ${processingTimeMS}ms`;
+                },
+              }}
+            />
+          </div>
+          
           <div className="search-results">
             <Hits hitComponent={Hit} />
+          </div>
+          
+          <div className="pagination-container">
+            <Pagination
+              showFirst={true}
+              showPrevious={true}
+              showNext={true}
+              showLast={true}
+              translations={{
+                previous: '‹ Anterior',
+                next: 'Próximo ›',
+                first: '« Primeira',
+                last: 'Última »',
+                page(currentRefinement) {
+                  return `${currentRefinement}`;
+                },
+                ariaPrevious: 'Página anterior',
+                ariaNext: 'Próxima página',
+                ariaFirst: 'Primeira página',
+                ariaLast: 'Última página',
+              }}
+            />
           </div>
         </div>
       </InstantSearch>
@@ -134,6 +168,12 @@ const SearchComponent = () => {
           border: 1px solid #e2e8f0;
           border-radius: 4px;
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .search-stats {
+          font-size: 0.875rem;
+          color: #64748b;
+          margin: 10px 0;
         }
         
         .search-results {
@@ -216,6 +256,69 @@ const SearchComponent = () => {
         .ais-Hits-item {
           margin: 0;
           padding: 0;
+        }
+        
+        /* Estilos para paginação */
+        .pagination-container {
+          display: flex;
+          justify-content: center;
+          margin-top: 30px;
+        }
+        
+        .ais-Pagination-list {
+          display: flex;
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          gap: 5px;
+        }
+        
+        .ais-Pagination-item {
+          margin: 0 2px;
+        }
+        
+        .ais-Pagination-link {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 36px;
+          height: 36px;
+          border-radius: 4px;
+          color: #4a5568;
+          text-decoration: none;
+          transition: all 0.2s;
+        }
+        
+        .ais-Pagination-item--selected .ais-Pagination-link {
+          background-color: #4f46e5;
+          color: white;
+          font-weight: bold;
+        }
+        
+        .ais-Pagination-item--firstPage .ais-Pagination-link,
+        .ais-Pagination-item--previousPage .ais-Pagination-link,
+        .ais-Pagination-item--nextPage .ais-Pagination-link,
+        .ais-Pagination-item--lastPage .ais-Pagination-link {
+          color: #4a5568;
+          width: auto;
+          padding: 0 10px;
+        }
+        
+        .ais-Pagination-link:hover {
+          background-color: #e2e8f0;
+        }
+        
+        .ais-Pagination-item--selected .ais-Pagination-link:hover {
+          background-color: #4338ca;
+        }
+        
+        .ais-Pagination-item--disabled .ais-Pagination-link {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+        
+        .ais-Pagination-item--disabled .ais-Pagination-link:hover {
+          background-color: transparent;
         }
       `}</style>
     </div>
