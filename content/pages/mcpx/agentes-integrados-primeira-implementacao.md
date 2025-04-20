@@ -62,6 +62,7 @@ seo:
     - type: MetaTag
       property: 'og:title'
       content: Agentes Integrados
+  socialImage: /images/1745107308805.png
 colors: bg-light-fg-dark
 styles:
   self:
