@@ -5,25 +5,34 @@ alwaysApply: true
 ---
 # Componentes
 
-O projeto utiliza um sistema de componentes modulares que são instanciados dinamicamente com base nos dados do Markdown.
+O projeto utiliza um sistema de componentes modulares que são instanciados dinamicamente com base nos dados do Markdown (para seções de página) ou usados diretamente nas páginas (como o SearchComponent).
 
 ## Componentes Principais
-- [components/Hero.jsx](mdc:components/Hero.jsx) - Componente de seção hero com imagem, texto e botão
-- [components/Button.jsx](mdc:components/Button.jsx) - Componente de botão reutilizável
-- [components/Stats.jsx](mdc:components/Stats.jsx) - Componente de estatísticas
+- **Layouts:** ([src/components/layouts](mdc:src/components/layouts)) Define a estrutura base das páginas (ex: `PostLayout`, `PostFeedLayout`). O layout é determinado pelo campo `type` no frontmatter do Markdown.
+- **Seções:** ([src/components/sections](mdc:src/components/sections)) Blocos de conteúdo reutilizáveis (ex: `HeroSection`, `FeaturedPostsSection`) renderizados dinamicamente com base na array `sections` no frontmatter.
+- **Blocos:** ([src/components/blocks](mdc:src/components/blocks)) Elementos menores usados dentro das seções (ex: `TitleBlock`, `ImageBlock`).
+- **Átomos:** ([src/components/atoms](mdc:src/components/atoms)) Componentes básicos como `Button`, `Link`.
+- **Busca:** [src/components/SearchComponent.jsx](mdc:src/components/SearchComponent.jsx) - Componente React que integra com Algolia para fornecer a funcionalidade de busca.
 
-## Renderização Dinâmica
-Os componentes são mapeados em `pages/[[...slug]].jsx` através do objeto `componentMap`, que associa o tipo de seção do Markdown ao componente React correspondente:
+## Renderização Dinâmica de Layouts e Seções
+Os layouts e seções são mapeados e renderizados dinamicamente em [src/pages/content/[[...slug]].js](mdc:src/pages/content/[[...slug]].js) usando a função `getComponent` de [src/components/components-registry.js](mdc:src/components/components-registry.js). Essa função busca o componente correspondente ao `modelName` (para layouts) ou ao `type` (para seções) definido no frontmatter.
 
-```jsx
-const componentMap = {
-    hero: Hero,
-    stats: Stats
-};
+Exemplo de frontmatter definindo layout e seções:
+```yaml
+---
+type: PostLayout # Define o layout da página
+title: Título do Artigo
+# ... outros metadados ...
+bottomSections: # Define as seções a serem renderizadas
+  - type: GenericSection
+    # ... props da seção ...
+  - type: FeaturedPostsSection
+    # ... props da seção ...
+---
 ```
 
 ## Dados e Props
-Cada componente recebe propriedades definidas no frontmatter YAML dos arquivos Markdown. Os componentes devem ser projetados para aceitar essas propriedades e renderizar adequadamente.
+Cada componente de layout ou seção recebe as propriedades definidas no frontmatter YAML dos arquivos Markdown como `props`. Os componentes devem ser projetados para aceitar essas propriedades e renderizar adequadamente.
 
 ## Atributos Stackbit
-Os componentes incluem atributos especiais como `data-sb-object-id` e `data-sb-field-path` para integração com o editor visual do Stackbit.
+Os componentes incluem atributos especiais como `data-sb-object-id` e `data-sb-field-path` para integração com o editor visual do Stackbit, permitindo a edição inline.
