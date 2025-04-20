@@ -4,13 +4,23 @@ const fs = require('fs');
 const path = require('path');
 const matter = require('front-matter');
 
+// Importar a função buildIndexName para garantir consistência com o componente de busca
+const { buildIndexName } = require('../src/utils/indexer/consts');
+
+// Log das variáveis de ambiente
+console.log('Variáveis de ambiente:');
+console.log('NEXT_PUBLIC_ALGOLIA_APP_ID:', process.env.NEXT_PUBLIC_ALGOLIA_APP_ID);
+console.log('ALGOLIA_ADMIN_API_KEY:', process.env.ALGOLIA_ADMIN_API_KEY);
+
 // Inicializar cliente Algolia
 const client = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
   process.env.ALGOLIA_ADMIN_API_KEY
 );
 
-const indexName = 'development_mcpx_content';
+// Usar a mesma função que o componente de busca usa para obter o nome do índice
+const indexName = buildIndexName() || 'development_mcpx_content';
+console.log(`🔍 Usando índice Algolia: ${indexName}`);
 const index = client.initIndex(indexName);
 
 // Diretório base para conteúdo
