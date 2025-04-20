@@ -9,4 +9,5 @@ seo:
   type: Seo
   metaTitle: Busca de Conteúdo MCPX
   metaDescription: Busca de Conteúdo MCPX
+  socialImage: /images/abstract-feature1.svg
 ---
