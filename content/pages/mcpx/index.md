@@ -5,4 +5,6 @@ numOfPostsPerPage: 10
 enableSearch: true
 slug: nova pág
 isDraft: false
+seo:
+  type: Seo
 ---
