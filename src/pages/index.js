@@ -4,23 +4,28 @@ import Head from 'next/head';
 
 // Importação dinâmica do SearchComponent para evitar erros de SSR
 const SearchComponent = dynamic(
-  () => import('../../components/SearchComponent'),
+  () => import('../components/SearchComponent'),
   { ssr: false }
 );
 
-const MCPXPage = () => {
+const HomePage = () => {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <Head>
-        <title>Busca de Conteúdo - MCPX</title>
-        <meta name="description" content="Busque conteúdos usando Algolia" />
+        <title>DataButton - Artigos e Tutoriais</title>
+        <meta name="description" content="Explore nossa coleção de artigos e tutoriais sobre desenvolvimento e tecnologia" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       
       <main>
-        <h1 className="text-3xl font-bold text-center mb-8">
-          Busca de Conteúdo MCPX
-        </h1>
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold mb-4">
+            DataButton
+          </h1>
+          <p className="text-xl text-gray-600">
+            Explore nossa biblioteca de artigos e tutoriais
+          </p>
+        </div>
         
         <div className="max-w-4xl mx-auto">
           <SearchComponent />
@@ -30,4 +35,4 @@ const MCPXPage = () => {
   );
 };
 
-export default MCPXPage; 
+export default HomePage; 

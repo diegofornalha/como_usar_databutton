@@ -92,7 +92,18 @@ function resolveReferences(content, fileToContent) {
 
 export function allContent() {
     const [data, pages] = [dataDir, pagesDir].map((dir) => {
-        return contentFilesInPath(dir).map((file) => readContent(file));
+        const files = contentFilesInPath(dir);
+        console.log(`📁 Arquivos encontrados em ${dir}:`, files);
+        return files.map((file) => {
+            const content = readContent(file);
+            console.log(`📄 Conteúdo carregado de ${file}:`, {
+                type: content.type,
+                slug: content.slug,
+                category: content.category,
+                urlPath: content.__metadata?.urlPath
+            });
+            return content;
+        });
     });
     const objects = [...pages, ...data];
     const fileToContent = Object.fromEntries(objects.map((e) => [e.__metadata.id, e]));
@@ -100,10 +111,10 @@ export function allContent() {
 
     pages.forEach((page) => {
         page.__metadata.urlPath = getPageUrl(page);
+        console.log(`🔗 URL gerada para ${page.slug}:`, page.__metadata.urlPath);
     });
 
     const siteConfig = data.find((e) => e.__metadata.modelName === Config.name);
-
     resolveReferences(siteConfig, fileToContent);
 
     return { objects, pages, props: { site: siteConfig } };

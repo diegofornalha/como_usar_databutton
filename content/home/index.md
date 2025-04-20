@@ -1,6 +1,6 @@
 ---
-title: mcpx - databutton.com.br
-slug: /mcpx
+title: aula.databutton.com.br
+slug: /
 numOfPostsPerPage: 8
 enableSearch: true
 topSections: []
@@ -8,10 +8,9 @@ styles:
   title:
     textAlign: center
 seo:
-  metaTitle: mcpx - Demo site
+  metaTitle: Buscar Conteúdo
   metaDescription: >-
-    This is the mcpx of the demo site where we post about technology, product,
-    and design.
+Busque conteúdos sobre IA
   socialImage: /images/img-placeholder.svg
   type: Seo
   addTitleSuffix: true
