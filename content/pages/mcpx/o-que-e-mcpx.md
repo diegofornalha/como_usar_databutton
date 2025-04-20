@@ -16,6 +16,12 @@ featuredImage:
 bottomSections: []
 isFeatured: false
 isDraft: false
+categories:
+  - protocolos
+  - ia
+  - llm
+  - mcpx
+  - integração de ferramentas
 seo:
   metaTitle: O que é MCPX? - Protocolo de Contexto de Modelo Executável
   metaDescription: >-
