@@ -4,10 +4,10 @@ title: RAG no DataButton
 slug: rag-no-databutton
 date: '2024-03-14'
 excerpt: >-
-  O RAG (Retrieval-Augmented Generation) é uma técnica avançada de IA que combina
-  recuperação de informações com geração de texto, permitindo respostas mais precisas
-  e contextualizadas. No DataButton, implementamos RAG para melhorar a qualidade
-  das interações com nossos assistentes virtuais.
+  O RAG (Retrieval-Augmented Generation) é uma técnica avançada de IA que
+  combina recuperação de informações com geração de texto, permitindo respostas
+  mais precisas e contextualizadas. No DataButton, implementamos RAG para
+  melhorar a qualidade das interações com nossos assistentes virtuais.
 featuredImage:
   url: /images/rag-databutton.svg
   altText: RAG no DataButton
@@ -20,8 +20,10 @@ isFeatured: true
 isDraft: false
 seo:
   metaTitle: RAG no DataButton - Como funciona
-  metaDescription: Entenda como o RAG (Retrieval-Augmented Generation) é implementado no DataButton para melhorar as respostas dos assistentes virtuais.
-  socialImage: /images/rag-databutton.svg
+  metaDescription: >-
+    Entenda como o RAG (Retrieval-Augmented Generation) é implementado no
+    DataButton para melhorar as respostas dos assistentes virtuais.
+  socialImage: /images/abstract-feature2.svg
   type: Seo
 colors: bg-light-fg-dark
 styles:
