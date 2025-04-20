@@ -64,10 +64,40 @@ styles:
   self:
     flexDirection: col
 ---
-Etiam facilisis lacus nec pretium lobortis. Praesent dapibus justo non efficitur efficitur. Nullam viverra justo arcu, eget egestas tortor pretium id. Sed imperdiet mattis eleifend. Vivamus suscipit et neque imperdiet venenatis.
+### Pra quem está entrando no mundo dos agentes de IA pode iniciar assim:
 
-> Vestibulum ullamcorper risus auctor eleifend consequat.
+1.  Com **automação simples**
 
-In malesuada sed urna eget vehicula. Donec fermentum tortor sit amet nisl elementum fringilla. Pellentesque dapibus suscipit faucibus. Nullam malesuada sed urna quis rutrum. Donec facilisis lorem id maximus mattis. Vestibulum quis elit magna. Vestibulum accumsan blandit consequat. Phasellus quis posuere quam.
+2.  Evoluir para **fluxos de trabalho de IA** quando precisar de mais flexibilidade e controle
 
-Vivamus mollis in tellus ac ullamcorper. Vestibulum sit amet bibendum ipsum, vitae rutrum ex. Nullam cursus, urna et dapibus aliquam, urna leo euismod metus, eu luctus justo mi eget mauris. Proin felis leo, volutpat et purus in, lacinia luctus eros. Pellentesque lobortis massa scelerisque lorem ullamcorper, sit amet elementum nulla scelerisque. In volutpat efficitur nulla, aliquam ornare lectus ultricies ac. Mauris sagittis ornare dictum. Nulla vel felis ut purus fermentum pretium. Sed id lectus ac diam aliquet venenatis. Etiam ac auctor enim. Nunc velit mauris, viverra vel orci ut, egestas rhoncus diam. Morbi scelerisque nibh tellus, vel varius urna malesuada sed. Etiam ultricies sem consequat, posuere urna non, maximus ex. Mauris gravida diam sed augue condimentum pulvinar vel ac dui. Integer vel convallis justo.
+3.  Só depois utilize **agentes de IA** quando precisar de **alta adaptabilidade**
+
+```
+Automação: 
+```
+
+Entrega **resultados altamente consistentes e previsíveis**. Ideal para **processos críticos**, onde erros não são tolerados e a previsibilidade é essencial.
+
+Requer **dados rigidamente estruturados**, com formato pré-definido.
+
+Você toma **todas as decisões** de forma antecipada ao criar a automação. Depois disso, **nenhuma intervenção humana é necessária**.
+
+```
+Fluxo de trabalho de IA: 
+```
+
+Gera resultados **geralmente confiáveis**, com **pequenas variações** em casos extremos. Equilibra **flexibilidade com limites de segurança** para evitar grandes erros.
+
+Trabalha com dados **principalmente estruturados**, aceitando alguma variação. **Consegue se ajustar** a pequenas mudanças nos parâmetros, mas precisa de orientação em mudanças maiores.
+
+Você define os **limites** dentro dos quais a IA pode operar. Humanos **revisam ou intervêm ocasionalmente**, especialmente em casos extremos.
+
+```
+Agente de IA: 
+```
+
+Ideal para **exploração e descoberta de soluções novas**, quando a **adaptação importa mais do que a consistência**.
+
+Lida com dados **não estruturados e variados** de múltiplas fontes. **Adapta-se de forma autônoma** a diferentes entradas e ambientes, sem necessidade de reprogramação.
+
+Você define **objetivos de alto nível** e a IA determina **como alcançá-los**.
