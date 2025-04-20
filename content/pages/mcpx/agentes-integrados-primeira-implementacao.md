@@ -58,7 +58,8 @@ seo:
   metaTitle: Agentes Integrados
   metaDescription: Agentes Integrados
   addTitleSuffix: false
-  metaTags: []
+  metaTags:
+    - type: MetaTag
 colors: bg-light-fg-dark
 styles:
   self:
