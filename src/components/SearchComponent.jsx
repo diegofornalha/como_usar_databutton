@@ -4,6 +4,7 @@ import { InstantSearch, SearchBox, Hits, Highlight, Configure } from 'react-inst
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
+import { buildIndexName } from '../utils/indexer/consts';
 
 // Configurar dayjs para português do Brasil
 dayjs.locale('pt-br');
@@ -15,7 +16,7 @@ const searchClient = algoliasearch(
 );
 
 // Nome do índice Algolia
-const indexName = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME;
+const indexName = buildIndexName() || 'development_mcpx_content';
 
 // Componente que renderiza cada resultado de pesquisa
 const Hit = ({ hit }) => {

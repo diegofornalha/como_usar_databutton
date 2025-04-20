@@ -1,0 +1,37 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Configuração do Algolia
+
+## Índice Padrão
+- Nome do índice: `development_mcpx_content`
+- Este é o único índice que será utilizado para todos os artigos
+- Não criar novos índices, sempre usar este
+
+## Configuração do Índice
+- Ambiente: development
+- Tipo de conteúdo: mcpx_content
+- Atributos pesquisáveis:
+  - title
+  - content
+  - excerpt
+  - categories
+- Atributos para faceting:
+  - categories
+- Ordenação personalizada:
+  - desc(date)
+
+## Processo de Indexação
+1. Todos os artigos devem ser indexados neste índice
+2. Usar o comando `npm run index-content` para indexar
+3. O script irá:
+   - Ler os arquivos da pasta `content/pages/mcpx`
+   - Processar o conteúdo markdown
+   - Indexar no Algolia com o índice padrão
+
+## Observações
+- Manter o nome do índice consistente em todos os arquivos
+- Não alterar o nome do índice sem necessidade
+- Verificar se o conteúdo foi indexado corretamente após cada publicação

@@ -10,7 +10,8 @@ const client = algoliasearch(
   process.env.ALGOLIA_ADMIN_API_KEY
 );
 
-const index = client.initIndex(process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME);
+const indexName = 'development_mcpx_content';
+const index = client.initIndex(indexName);
 
 async function indexarConteudo() {
   try {
