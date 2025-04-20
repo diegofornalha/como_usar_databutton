@@ -14,11 +14,13 @@ featuredImage:
     self:
       borderRadius: medium
 bottomSections: []
-isFeatured: true
+isFeatured: false
 isDraft: false
 seo:
   metaTitle: O que é MCPX? - Protocolo de Contexto de Modelo Executável
-  metaDescription: Entenda como o MCPX permite a execução segura de modelos de contexto, integrando LLMs com ferramentas externas de forma eficiente.
+  metaDescription: >-
+    Entenda como o MCPX permite a execução segura de modelos de contexto,
+    integrando LLMs com ferramentas externas de forma eficiente.
   socialImage: /images/abstract-feature1.svg
   type: Seo
 colors: bg-light-fg-dark
