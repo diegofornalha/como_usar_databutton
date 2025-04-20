@@ -3,12 +3,17 @@ export const ALGOLIA_INDEX_NAME_SUFFIX = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_N
 export const ALGOLIA_SEARCH_API_KEY = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY || '';
 
 export const ALGOLIA_ADMIN_API_KEY = process.env.ALGOLIA_ADMIN_API_KEY || '';
-// TODO consider approach of managing indexes, meanwhile use a fixed one.
-export const ENV_NAME = /*process.env.NODE_ENV ||*/ 'development';
+// Definir o nome do ambiente para indexação
+export const ENV_NAME = process.env.NODE_ENV || 'development';
 
 export function buildIndexName() {
     if (!ALGOLIA_INDEX_NAME_SUFFIX) {
         return null;
+    }
+    
+    // Verificar se o SUFFIX já inclui o prefixo do ambiente para evitar duplicação
+    if (ALGOLIA_INDEX_NAME_SUFFIX.startsWith(ENV_NAME + '_')) {
+        return ALGOLIA_INDEX_NAME_SUFFIX;
     }
     
     const indexName = ENV_NAME + '_' + ALGOLIA_INDEX_NAME_SUFFIX;
