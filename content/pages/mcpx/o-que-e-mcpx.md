@@ -1,6 +1,6 @@
 ---
 type: PostLayout
-title: O que é MCPX?
+title: Aprenda Mais Sobre MCPX
 slug: o-que-e-mcpx
 date: '2024-03-14'
 excerpt: >-
