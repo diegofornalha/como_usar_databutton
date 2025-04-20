@@ -1,6 +1,6 @@
 ---
 type: PostFeedLayout
-title: This is a page title
+title: Busca de Conteúdo MCPX
 numOfPostsPerPage: 10
 enableSearch: true
 slug: nova pág
