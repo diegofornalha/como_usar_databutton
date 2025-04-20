@@ -8,7 +8,7 @@ excerpt: >-
   transformando diferentes setores ao permitir que computadores aprendam padrões
   automaticamente.
 featuredImage:
-  url: /images/abstract-feature5.svg
+  url: /images/abstract-feature1.svg
   altText: Ilustração de Machine Learning
   type: ImageBlock
   styles:
@@ -28,7 +28,7 @@ seo:
   metaDescription: >-
     Aprenda os conceitos básicos de Machine Learning, seus tipos principais e
     aplicações reais em diversos setores.
-  socialImage: /images/abstract-feature5.svg
+  socialImage: /images/abstract-feature2.svg
   type: Seo
 colors: bg-light-fg-dark
 styles:
