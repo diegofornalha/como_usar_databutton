@@ -61,6 +61,7 @@ seo:
   metaTags:
     - type: MetaTag
       property: 'og:title'
+      content: Agentes Integrados
 colors: bg-light-fg-dark
 styles:
   self:
