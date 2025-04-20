@@ -56,7 +56,7 @@ isDraft: false
 seo:
   type: Seo
   metaTitle: Agentes Integrados
-  metaDescription: lorem-ipsum
+  metaDescription: Agentes Integrados
   addTitleSuffix: false
   metaTags: []
 colors: bg-light-fg-dark
