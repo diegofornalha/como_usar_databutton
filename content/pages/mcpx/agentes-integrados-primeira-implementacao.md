@@ -60,6 +60,7 @@ seo:
   addTitleSuffix: false
   metaTags:
     - type: MetaTag
+      property: 'og:title'
 colors: bg-light-fg-dark
 styles:
   self:
