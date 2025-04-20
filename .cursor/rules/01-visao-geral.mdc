@@ -3,10 +3,6 @@ description:
 globs: 
 alwaysApply: true
 ---
-# Visão Geral do Projeto
-
-Este é um projeto Next.js integrado com Netlify e Stackbit, projetado para ser utilizado com create.netlify.com/studio/. 
-
 ## Arquivos Principais
 - [stackbit.config.ts](mdc:stackbit.config.ts) - Configuração do Stackbit
 - [netlify.toml](mdc:netlify.toml) - Configuração do Netlify
@@ -20,5 +16,4 @@ Este é um projeto Next.js integrado com Netlify e Stackbit, projetado para ser 
 - `/utils` - Funções utilitárias
 - `/public` - Arquivos estáticos
 - `/styles` - Estilos CSS/Tailwind
-
 Este site usa um sistema baseado em Markdown para conteúdo, que é convertido em páginas renderizadas pelo Next.js. O Stackbit é utilizado como CMS para edição visual.
