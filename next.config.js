@@ -17,6 +17,24 @@ const nextConfig = {
     // Configuração de redirecionamentos
     async redirects() {
         return [
+            // Redirecionar artigos de subpastas como /mcpx/databutton/o-que-e-databutton/ para /mcpx/o-que-e-databutton/
+            {
+                source: '/mcpx/:subfolder/o-que-e-:slug/',
+                destination: '/mcpx/o-que-e-:slug/',
+                permanent: true,
+            },
+            // Exemplo específico para Databutton
+            {
+                source: '/mcpx/databutton/o-que-e-databutton/',
+                destination: '/mcpx/o-que-e-databutton/',
+                permanent: true,
+            },
+            // Redirecionar /mcpx/ml/introducao-ao-ml/ para /mcpx/introducao-ao-ml/
+            {
+                source: '/mcpx/ml/introducao-ao-ml/:path*',
+                destination: '/mcpx/introducao-ao-ml/:path*',
+                permanent: true,
+            },
             // Redirecionar /mcpx/ para a home
             {
                 source: '/mcpx/',
