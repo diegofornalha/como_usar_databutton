@@ -5,37 +5,53 @@ alwaysApply: true
 ---
 # Sistema de Conteúdo
 
-Este projeto utiliza arquivos Markdown com frontmatter YAML para gerenciar o conteúdo do site.
+Este projeto utiliza arquivos Markdown com frontmatter YAML para gerenciar o conteúdo do site, que é então processado pelo Next.js para renderização e pelo script de indexação para o Algolia.
 
 ## Estrutura de Conteúdo
-- [content/pages/](mdc:content/pages) - Diretório principal de conteúdo
-  - [content/pages/index.md](mdc:content/pages/index.md) - Página inicial do site
+- [content/pages/](mdc:content/pages) - Diretório raiz para páginas Markdown.
+  - Cada subdiretório representa um tipo de conteúdo (ex: `mcpx`).
+  - Arquivos `index.md` dentro desses subdiretórios geralmente definem layouts de feed/listagem para aquele tipo de conteúdo (ex: `content/pages/mcpx/index.md` configura o feed de posts MCPX).
+  - Outros arquivos `.md` representam páginas individuais (ex: `content/pages/mcpx/o-que-e-mcpx.md`).
+- [content/data/](mdc:content/data) - Arquivos JSON para dados reutilizáveis (ex: autores em `person.json`).
 
-## Formato de Arquivo
-Cada arquivo Markdown inclui:
-1. **Frontmatter YAML** - Metadados e configuração da página
-2. **Seções** - Array de componentes a serem renderizados
-3. **Corpo** - Conteúdo Markdown opcional
+## Formato de Arquivo (Exemplo: PostLayout)
+Arquivos como `content/pages/mcpx/nome-do-post.md` usam o `PostLayout` e incluem:
 
-Exemplo:
 ```yaml
 ---
-title: Home Page
-type: page
-sections:
-  - type: hero
-    heading: Título Principal
-    body: Descrição da seção
-    button:
-      label: Botão de Ação
-      url: 'https://exemplo.com'
-    image:
-      src: /images/exemplo.png
-      alt: Descrição da imagem
+type: PostLayout       # Define o layout/componente principal (usado pelo Next.js e Stackbit)
+title: Título do Post   # Usado na página e indexado no Algolia
+slug: nome-do-post      # Parte da URL (ex: /content/mcpx/nome-do-post)
+date: 'YYYY-MM-DD'      # Data de publicação (indexada no Algolia para ordenação)
+author: content/data/nome-autor.json # Referência ao autor (opcional)
+excerpt: >-            # Resumo curto (indexado no Algolia)
+  Texto do resumo...
+featuredImage:          # Imagem destacada (opcional, indexada no Algolia)
+  url: /images/imagem.png
+  altText: Descrição
+  type: ImageBlock
+categories:             # Categorias/tags (opcional, indexadas no Algolia)
+  - categoria1
+  - categoria2
+isFeatured: false        # Usado por alguns componentes (ex: FeaturedPostsSection)
+isDraft: false           # Se true, não será publicado/indexado
+seo:                    # Configurações de SEO (opcional)
+  metaTitle: Título para SEO
+  metaDescription: Descrição para SEO
+bottomSections: []      # Seções adicionais abaixo do conteúdo principal (opcional)
 ---
+
+# Corpo do Post
+
+Conteúdo principal em Markdown. Este conteúdo também é indexado no Algolia.
 ```
 
 ## Processamento
-- O utilitário [utils/content.js](mdc:utils/content.js) usa `gray-matter` para processar o frontmatter
-- Os dados processados são passados para os componentes React correspondentes
-- Os componentes são renderizados baseados no tipo definido em cada seção
+- **Next.js:**
+  - Utilitários em `src/utils/` (como `content.js`, `static-props-resolvers.js`) leem os arquivos `.md`.
+  - `gray-matter` é usado para parsear o frontmatter e o corpo Markdown.
+  - Os dados são passados como props para os componentes de Layout definidos pelo campo `type` (ver [src/components/components-registry.js](mdc:src/components/components-registry.js)).
+- **Algolia:**
+  - O script [scripts/indexar-conteudo.js](mdc:scripts/indexar-conteudo.js) lê os arquivos `.md` em `content/pages/*/*.md` (exceto `index.md`).
+  - Ele extrai campos do frontmatter (`title`, `excerpt`, `date`, `categories`, `featuredImage`, `type`, `slug`) e o corpo (`content`) para criar objetos JSON.
+  - Esses objetos são enviados para o índice do Algolia especificado (ver [06-algolia.mdc](mdc:.cursor/rules/06-algolia.mdc)).
