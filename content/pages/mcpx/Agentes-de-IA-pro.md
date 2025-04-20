@@ -2,7 +2,7 @@
 type: PostLayout
 title: Agentes de IA - Quando usar este framework?
 date: '2025-04-20'
-author: content/data/person1.json
+author: content/data/diegofornalha.json
 excerpt: >-
   Facilisis dui. Nulla molestie risus in mi dapibus, eget porta lorem semper.
   Donec sed facilisis nibh.
