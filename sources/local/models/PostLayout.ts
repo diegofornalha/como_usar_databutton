@@ -75,7 +75,7 @@ export const PostLayout: Model = {
             label: 'Excerpt',
             required: false,
             default:
-                'Nunc rutrum felis dui, ut consequat sapien scelerisque vel. Integer condimentum dignissim justo vel faucibus.',
+                'Tansforme suas ideias em aplicativos de IA rapidamente. ',
             hidden: false,
             localized: false,
             group: 'thumbnail'
