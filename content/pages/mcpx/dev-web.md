@@ -7,7 +7,7 @@ excerpt: >-
   Explore as tecnologias e práticas essenciais do desenvolvimento web moderno,
   incluindo HTML5, CSS3, JavaScript avançado e frameworks populares.
 featuredImage:
-  url: /images/abstract-feature2.svg # Usando uma imagem diferente para variar
+  url: https://images.ctfassets.net/dmu1essxro7q/7xLDNq2zEsCmAWJa76rt4X/3677df4fe1801a69be776b7754cd7793/Logo_after_quote_image.jpg # Usando uma imagem diferente para variar
   altText: Desenvolvimento Web Moderno
   type: ImageBlock
   styles:
@@ -21,7 +21,7 @@ seo:
   metaDescription: >-
     Aprenda sobre as ferramentas e técnicas mais recentes para criar aplicações
     web eficientes, responsivas e interativas.
-  socialImage: /images/abstract-feature2.svg
+  socialImage: https://images.ctfassets.net/dmu1essxro7q/7xLDNq2zEsCmAWJa76rt4X/3677df4fe1801a69be776b7754cd7793/Logo_after_quote_image.jpg
   type: Seo
 colors: bg-light-fg-dark
 styles:

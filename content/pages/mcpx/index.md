@@ -9,5 +9,5 @@ seo:
   type: Seo
   metaTitle: Busca de Conteúdo MCPX
   metaDescription: Busca de Conteúdo MCPX
-  socialImage: /images/abstract-feature1.svg
+  socialImage: https://images.ctfassets.net/dmu1essxro7q/7xLDNq2zEsCmAWJa76rt4X/3677df4fe1801a69be776b7754cd7793/Logo_after_quote_image.jpg
 ---

@@ -643,7 +643,7 @@
                                 "subtitle": "This is the item subtitle",
                                 "text": "Follow the tutorial to build your first Netlify site.\n",
                                 "image": {
-                                    "url": "/images/abstract-feature1.svg",
+                                    "url": "https://images.ctfassets.net/dmu1essxro7q/7xLDNq2zEsCmAWJa76rt4X/3677df4fe1801a69be776b7754cd7793/Logo_after_quote_image.jpg",
                                     "altText": "Placholder image",
                                     "elementId": null,
                                     "styles": {
@@ -671,7 +671,7 @@
                                 "subtitle": "This is the item subtitle",
                                 "text": "Follow the tutorial to build your first awesome Netlify site.\n",
                                 "image": {
-                                    "url": "/images/abstract-feature2.svg",
+                                    "url": "https://images.ctfassets.net/dmu1essxro7q/7xLDNq2zEsCmAWJa76rt4X/3677df4fe1801a69be776b7754cd7793/Logo_after_quote_image.jpg",
                                     "altText": "Placeholder image",
                                     "elementId": null,
                                     "styles": {
@@ -699,7 +699,7 @@
                                 "subtitle": "This is the item subtitle",
                                 "text": "Learn from the tutorial and build your first awesome Netlify site.\n",
                                 "image": {
-                                    "url": "/images/abstract-feature3.svg",
+                                    "url": "https://images.ctfassets.net/dmu1essxro7q/7xLDNq2zEsCmAWJa76rt4X/3677df4fe1801a69be776b7754cd7793/Logo_after_quote_image.jpg",
                                     "altText": "Placeholder image",
                                     "elementId": null,
                                     "styles": {

@@ -8,7 +8,7 @@ excerpt: >-
   transformando diferentes setores ao permitir que computadores aprendam padrões
   automaticamente.
 featuredImage:
-  url: /images/abstract-feature1.svg
+  url: https://images.ctfassets.net/dmu1essxro7q/7xLDNq2zEsCmAWJa76rt4X/3677df4fe1801a69be776b7754cd7793/Logo_after_quote_image.jpg
   altText: Ilustração de Machine Learning
   type: ImageBlock
   styles:
@@ -28,7 +28,7 @@ seo:
   metaDescription: >-
     Aprenda os conceitos básicos de Machine Learning, seus tipos principais e
     aplicações reais em diversos setores.
-  socialImage: /images/abstract-feature2.svg
+  socialImage: https://images.ctfassets.net/dmu1essxro7q/7xLDNq2zEsCmAWJa76rt4X/3677df4fe1801a69be776b7754cd7793/Logo_after_quote_image.jpg
   type: Seo
 colors: bg-light-fg-dark
 styles:

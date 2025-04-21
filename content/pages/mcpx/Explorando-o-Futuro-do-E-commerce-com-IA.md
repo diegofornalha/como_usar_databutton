@@ -1,16 +1,15 @@
 ---
 type: PostLayout
-title: Explorando o Futuro do E-commerce com IA
+title: 'E-commerce e IA: O Futuro das Compras Online com Inteligência Artificial'
 date: '2025-04-10'
 author: content/data/diegofornalha.json
 excerpt: >-
-  Facilisis dui. Nulla molestie risus in mi dapibus, eget porta lorem semper.
-  Donec sed facilisis nibh.
+  Descubra como a Inteligência Artificial está revolucionando o e-commerce através de LLMs, RAG e experiências personalizadas de compra. Conheça o ShoppingAssistantGPT e o futuro do comércio eletrônico.
 featuredImage:
   type: ImageBlock
-  url: /images/abstract-feature1.svg
-  altText: Thumbnail
-  elementId: ''
+  url: 'https://images.ctfassets.net/dmu1essxro7q/7xLDNq2zEsCmAWJa76rt4X/3677df4fe1801a69be776b7754cd7793/Logo_after_quote_image.jpg'
+  altText: 'Databutton - Transformando o E-commerce com IA'
+  elementId: 'featured-image-ecommerce-ai'
   styles:
     self:
       padding:
@@ -21,7 +20,7 @@ featuredImage:
 bottomSections:
   - type: DividerSection
     title: Divider
-    elementId: ''
+    elementId: 'content-divider'
     colors: bg-light-fg-dark
     styles:
       self:
@@ -31,14 +30,34 @@ bottomSections:
           - pb-3
           - pr-3
 slug: Explorando-o-Futuro-do-E-commerce-com-IA
-isFeatured: false
+isFeatured: true
 isDraft: false
 seo:
   type: Seo
-  metaTitle: Transforme suas ideias em aplicativos de IA rapidamente. Experimente a Databutton.com.br – cadastre-se!
-  metaDescription: Transforme suas ideias em aplicativos de IA rapidamente. Experimente a Databutton.com.br – cadastre-se!
-  addTitleSuffix: false
-  metaTags: []
+  metaTitle: 'E-commerce e IA: Como a Inteligência Artificial Está Revolucionando as Compras Online | Databutton'
+  metaDescription: >-
+    Explore como LLMs e RAG estão transformando o e-commerce com experiências de compra personalizadas. 
+    Descubra o ShoppingAssistantGPT e aprenda a criar aplicações de IA para comércio eletrônico com a Databutton.
+  addTitleSuffix: true
+  metaTags:
+    - name: 'keywords'
+      content: 'e-commerce, inteligência artificial, IA no varejo, LLM, RAG, compras online, personalização, databutton, ShoppingAssistantGPT'
+    - name: 'robots'
+      content: 'index, follow'
+    - property: 'og:title'
+      content: 'E-commerce e IA: O Futuro das Compras Online com Inteligência Artificial'
+    - property: 'og:description'
+      content: 'Descubra como a IA está revolucionando o e-commerce através de LLMs e experiências personalizadas de compra. Conheça o ShoppingAssistantGPT.'
+    - property: 'og:image'
+      content: 'https://images.ctfassets.net/dmu1essxro7q/7xLDNq2zEsCmAWJa76rt4X/3677df4fe1801a69be776b7754cd7793/Logo_after_quote_image.jpg'
+    - name: 'twitter:card'
+      content: 'summary_large_image'
+    - name: 'twitter:title'
+      content: 'E-commerce e IA: O Futuro das Compras Online com Inteligência Artificial'
+    - name: 'twitter:description'
+      content: 'Descubra como a IA está revolucionando o e-commerce através de LLMs e experiências personalizadas de compra. Conheça o ShoppingAssistantGPT.'
+    - name: 'twitter:image'
+      content: 'https://images.ctfassets.net/dmu1essxro7q/7xLDNq2zEsCmAWJa76rt4X/3677df4fe1801a69be776b7754cd7793/Logo_after_quote_image.jpg'
 colors: bg-light-fg-dark
 styles:
   self:

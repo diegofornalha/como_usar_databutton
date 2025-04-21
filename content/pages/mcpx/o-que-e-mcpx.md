@@ -7,7 +7,7 @@ excerpt: >-
   O MCPX é um protocolo avançado que permite a execução de modelos de contexto
   de forma segura e eficiente, integrando LLMs com ferramentas externas.
 featuredImage:
-  url: /images/abstract-feature1.svg
+  url: https://images.ctfassets.net/dmu1essxro7q/7xLDNq2zEsCmAWJa76rt4X/3677df4fe1801a69be776b7754cd7793/Logo_after_quote_image.jpg
   altText: MCPX Related Posts
   type: ImageBlock
   styles:
@@ -27,7 +27,7 @@ seo:
   metaDescription: >-
     Entenda como o MCPX permite a execução segura de modelos de contexto,
     integrando LLMs com ferramentas externas de forma eficiente.
-  socialImage: /images/abstract-feature1.svg
+  socialImage: https://images.ctfassets.net/dmu1essxro7q/7xLDNq2zEsCmAWJa76rt4X/3677df4fe1801a69be776b7754cd7793/Logo_after_quote_image.jpg
   type: Seo
 colors: bg-light-fg-dark
 styles:

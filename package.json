@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "scripts": {
         "dev": "next dev",
-        "build": "next build",
+        "build": "next build && npm run index-content",
         "start": "next start",
         "index-content": "node scripts/indexar-conteudo.js"
     },
