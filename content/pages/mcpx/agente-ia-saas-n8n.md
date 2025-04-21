@@ -2,7 +2,7 @@
 type: PostLayout
 title: Como Criar um Agente de IA e Integrá-lo a um SaaS
 date: '2025-04-21'
-author: content/data/person1.json
+author: content/data/diegofornalha.json
 excerpt: >-
   Transforme suas ideias em aplicativos de IA rapidamente. Experimente a
   Databutton.com.br – cadastre-se!
