@@ -5,7 +5,8 @@ date: '2025-04-21'
 author: content/data/diegofornalha.json
 excerpt: >-
   Facilisis dui. Nulla molestie risus in mi dapibus, eget porta lorem semper.
-  Donec sed facilisis nibh.
+  Donec sed facilisis nibh. Transforme suas ideias em aplicativos de IA
+  rapidamente. Experimente a Databutton.com.br – cadastre-se!
 featuredImage:
   type: ImageBlock
   url: >-
