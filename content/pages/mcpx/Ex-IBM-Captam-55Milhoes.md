@@ -77,3 +77,11 @@ Brazil juntou-se à Coodex após um período sabático no Vale do Silício, onde
 Com uma equipe de 10 pessoas, sendo seis egressos da IBM, a Coodex passou por uma reestruturação recente, abandonando a marca Opwell e focando suas soluções de IA em três áreas principais: comissionamento de engenharia, documentação de qualidade e consultoria de desenvolvimento de software. A startup utiliza dados públicos e privados para identificar falhas em processos industriais de forma mais ágil.
 
 Os planos futuros incluem a expansão para o Oriente Médio e Europa. No curto prazo, a empresa está finalizando um contrato com uma empresa de meio de pagamentos na Flórida e planeja abrir um escritório nos Estados Unidos em 2026. "Ir para os EUA é um movimento obrigatório para nós", concluiu Brazil.
+
+
+
+> Transforme suas ideias em aplicativos de IA rapidamente. **Experimente a** [**Databutton.com.br**](https://databutton.com.br/) **– cadastre-se!**
+
+
+
+
