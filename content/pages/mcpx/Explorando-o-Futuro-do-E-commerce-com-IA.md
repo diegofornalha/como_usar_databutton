@@ -35,8 +35,8 @@ isFeatured: false
 isDraft: false
 seo:
   type: Seo
-  metaTitle: lorem-ipsum
-  metaDescription: lorem-ipsum
+  metaTitle: Transforme suas ideias em aplicativos de IA rapidamente. Experimente a Databutton.com.br – cadastre-se!
+  metaDescription: Transforme suas ideias em aplicativos de IA rapidamente. Experimente a Databutton.com.br – cadastre-se!
   addTitleSuffix: false
   metaTags: []
 colors: bg-light-fg-dark

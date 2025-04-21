@@ -27,7 +27,7 @@ seo:
   metaDescription: >-
     Descubra como o Databutton funciona como um desenvolvedor IA, transformando
     sua visão em software funcional, ideal para não-técnicos.
-  socialImage: /images/abstract-feature4.svg
+  socialImage: /images/abstract-feature2.svg
   type: Seo
 colors: bg-light-fg-dark
 styles:

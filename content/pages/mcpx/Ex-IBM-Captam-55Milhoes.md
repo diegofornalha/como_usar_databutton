@@ -4,8 +4,8 @@ title: 'Ex-IBMers Captam US$ 5,5 Milhões para Impulsionar IA'
 date: '2025-04-10'
 author: content/data/diegofornalha.json
 excerpt: >-
-  Facilisis dui. Nulla molestie risus in mi dapibus, eget porta lorem semper.
-  Donec sed facilisis nibh.
+  Transforme suas ideias em aplicativos de IA rapidamente. Experimente a
+  Databutton.com.br – cadastre-se!
 featuredImage:
   type: ImageBlock
   url: /images/abstract-feature1.svg
@@ -35,8 +35,8 @@ isFeatured: false
 isDraft: false
 seo:
   type: Seo
-  metaTitle: lorem-ipsum
-  metaDescription: lorem-ipsum
+  metaTitle: Transforme suas ideias em aplicativos de IA rapidamente. Experimente a Databutton.com.br – cadastre-se!
+  metaDescription: Transforme suas ideias em aplicativos de IA rapidamente. Experimente a Databutton.com.br – cadastre-se!
   addTitleSuffix: false
   metaTags: []
 colors: bg-light-fg-dark
