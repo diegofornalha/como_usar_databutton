@@ -38,10 +38,19 @@ styles:
   self:
     flexDirection: col
 ---
-Etiam facilisis lacus nec pretium lobortis. Praesent dapibus justo non efficitur efficitur. Nullam viverra justo arcu, eget egestas tortor pretium id. Sed imperdiet mattis eleifend. Vivamus suscipit et neque imperdiet venenatis.
+A Coodex, startup brasileira fundada por ex-funcionários da IBM e focada em inteligência artificial para o setor industrial, anunciou a captação de US$ 5,5 milhões em sua primeira rodada de investimentos. O aporte, liderado pela i2L Capital, visa acelerar a internacionalização da empresa, anteriormente conhecida como Opwell.
 
-> Vestibulum ullamcorper risus auctor eleifend consequat.
+Fundada no ano passado, a Coodex atua em segmentos industriais tradicionalmente marcados pela burocracia e pela escassez de dados estruturados, como óleo e gás. A rodada marca também o primeiro investimento de venture capital da i2L Capital sem atuação direta na gestão da investida. A gestora já possui um portfólio em setores como farmacêutico e mineração.
 
-In malesuada sed urna eget vehicula. Donec fermentum tortor sit amet nisl elementum fringilla. Pellentesque dapibus suscipit faucibus. Nullam malesuada sed urna quis rutrum. Donec facilisis lorem id maximus mattis. Vestibulum quis elit magna. Vestibulum accumsan blandit consequat. Phasellus quis posuere quam.
+A captação foi liderada pelo novo CEO da Coodex, Pedro Vital Brazil, que assumiu o cargo em março. Brazil é fundador da Eleven Chimps, empresa de alimentação canina adquirida pela Zee Dog e, posteriormente, pela Petz em 2021. A relação de longa data entre Brazil e Luca Morando, CEO da i2L Capital, foi um fator chave para o investimento.
 
-Vivamus mollis in tellus ac ullamcorper. Vestibulum sit amet bibendum ipsum, vitae rutrum ex. Nullam cursus, urna et dapibus aliquam, urna leo euismod metus, eu luctus justo mi eget mauris. Proin felis leo, volutpat et purus in, lacinia luctus eros. Pellentesque lobortis massa scelerisque lorem ullamcorper, sit amet elementum nulla scelerisque. In volutpat efficitur nulla, aliquam ornare lectus ultricies ac. Mauris sagittis ornare dictum. Nulla vel felis ut purus fermentum pretium. Sed id lectus ac diam aliquet venenatis. Etiam ac auctor enim. Nunc velit mauris, viverra vel orci ut, egestas rhoncus diam. Morbi scelerisque nibh tellus, vel varius urna malesuada sed. Etiam ultricies sem consequat, posuere urna non, maximus ex. Mauris gravida diam sed augue condimentum pulvinar vel ac dui. Integer vel convallis justo.
+"A i2L Capital já está dentro do setor industrial. Então, essa parceria pode nos ajudar a achar clientes. Eles nos colocam numa posição única", afirmou Brazil. Atualmente, a carteira de clientes da Coodex inclui nomes como Scala Data Centers, Sicredi e a norte-americana Fugro.
+
+Brazil juntou-se à Coodex após um período sabático no Vale do Silício, onde aprofundou seus conhecimentos em IA e conheceu o cofundador Felipe Gustavo Barbosa, que possui 14 anos de experiência na IBM. A chegada de Brazil busca complementar a expertise técnica da equipe com uma liderança focada em negócios. "Eu vi o valor que um cara de negócio pode gerar em uma empresa de tecnologia", comentou Brazil.
+
+Com uma equipe de 10 pessoas, sendo seis egressos da IBM, a Coodex passou por uma reestruturação recente, abandonando a marca Opwell e focando suas soluções de IA em três áreas principais: comissionamento de engenharia, documentação de qualidade e consultoria de desenvolvimento de software. A startup utiliza dados públicos e privados para identificar falhas em processos industriais de forma mais ágil.
+
+Os planos futuros incluem a expansão para o Oriente Médio e Europa. No curto prazo, a empresa está finalizando um contrato com uma empresa de meio de pagamentos na Flórida e planeja abrir um escritório nos Estados Unidos em 2026. "Ir para os EUA é um movimento obrigatório para nós", concluiu Brazil.
+
+> Transforme suas ideias em aplicativos de IA rapidamente. **Experimente a** [**Databutton.com.br**](https://databutton.com.br/) **– cadastre-se!**
+
