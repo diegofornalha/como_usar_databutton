@@ -28,6 +28,15 @@ const CONTENT_BASE_DIR = 'content/pages';
 // Diretório específico para artigos MCPX conforme regra 06
 const MCPX_DIR = 'mcpx';
 
+const MAX_CONTENT_LENGTH = 5000; // Limite seguro para o conteúdo
+
+function truncateContent(content) {
+  if (content.length > MAX_CONTENT_LENGTH) {
+    return content.substring(0, MAX_CONTENT_LENGTH) + '...';
+  }
+  return content;
+}
+
 async function indexarConteudo() {
   try {
     // Configurar os atributos conforme especificado na regra 06-algolia
@@ -86,7 +95,7 @@ async function indexarConteudo() {
         const object = {
           objectID: `${MCPX_DIR}_${slug}`,
           title: attributes.title || '',
-          content: body,
+          content: truncateContent(body),
           excerpt: attributes.excerpt || body.substring(0, 160) + '...',
           date: attributes.date ? new Date(attributes.date).getTime() : null,
           categories: attributes.categories || [],
@@ -124,7 +133,7 @@ async function indexarConteudo() {
             const object = {
               objectID: `${MCPX_DIR}_${subdir}_${slug}`,
               title: attributes.title || '',
-              content: body,
+              content: truncateContent(body),
               excerpt: attributes.excerpt || body.substring(0, 160) + '...',
               date: attributes.date ? new Date(attributes.date).getTime() : null,
               categories: attributes.categories || [],
