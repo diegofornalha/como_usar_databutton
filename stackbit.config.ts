@@ -20,9 +20,6 @@ export const config = defineStackbitConfig({
     nodeVersion: '18',
     styleObjectModelName: 'ThemeStyle',
     customContentReload: false,
-    previewUrl: process.env.NETLIFY_URL || 'http://localhost:3000',
-    devCommand: 'npm run dev',
-    installCommand: 'npm install',
     models: {
         page: { type: 'page', urlPath: '/{slug}' },
         post: { type: 'page', urlPath: '/mcpx/{slug}' }
@@ -31,13 +28,6 @@ export const config = defineStackbitConfig({
     presetSource: {
         type: 'files',
         presetDirs: ['sources/local/presets']
-    },
-    cacheDir: '.stackbit/cache',
-    assets: {
-        referenceType: 'static',
-        staticDir: 'public',
-        uploadDir: 'images',
-        publicPath: '/'
     },
     siteMap: ({ documents, models }): SiteMapEntry[] => {
         const pageModels = models.filter((model) => model.type === 'page').map((model) => model.name);
