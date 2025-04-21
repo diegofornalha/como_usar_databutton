@@ -2,7 +2,7 @@
 type: PostLayout
 title: 'Ex-IBMers Captam US$ 5,5 Milhões para Impulsionar IA'
 date: '2025-04-10'
-author: content/data/person1.json
+author: content/data/diegofornalha.json
 excerpt: >-
   Facilisis dui. Nulla molestie risus in mi dapibus, eget porta lorem semper.
   Donec sed facilisis nibh.
