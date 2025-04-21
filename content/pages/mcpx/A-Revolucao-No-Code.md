@@ -9,6 +9,8 @@ isDraft: false
 colors: bg-light-fg-dark
 seo:
   type: Seo
+categories:
+  - ''
 ---
 **Você não precisa mais se tornar um programador. A IA nos dá a todos uma equipe de desenvolvimento insanamente rápida e (quase) gratuita ao nosso alcance.**
 
