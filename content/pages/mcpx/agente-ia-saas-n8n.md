@@ -68,9 +68,7 @@ styles:
   self:
     flexDirection: col
 ---
-como criar um agente de inteligência artificial (IA) utilizando a ferramenta N8N e integrá-lo a um sistema SaaS (Software as a Service). Para ilustrar o processo, usaremos o exemplo do **Sakamoto**, um agente de IA desenvolvido com N8N e integrado à **Ebeneser**, uma agência de tecnologia focada em sistemas sob demanda. Vamos dividir a aula em seções para facilitar o entendimento.
-
-
+Como criar um agente de inteligência artificial (IA) utilizando a ferramenta N8N e integrá-lo a um sistema SaaS (Software as a Service). Para ilustrar o processo, usaremos o exemplo do **Sakamoto**, um agente de IA desenvolvido com N8N e integrado à **Ebeneser**, uma agência de tecnologia focada em sistemas sob demanda. Vamos dividir a aula em seções para facilitar o entendimento.
 
 ## **1. Visão Geral**
 
@@ -81,8 +79,6 @@ O **Sakamoto** é um agente de IA construído com o N8N, uma ferramenta open-s
 *   **O que é SaaS?** Um modelo de software hospedado na nuvem, acessado via internet, como o sistema da Ebeneser.
 
 Nosso objetivo é entender como o Sakamoto foi criado e como ele se conecta ao SaaS da Ebeneser, além de aprender como você pode replicar esse processo.
-
-
 
 ## **2. Estrutura do Workflow no N8N**
 
@@ -122,8 +118,6 @@ O coração do Sakamoto está na organização dos seus **workflows** no N8N. 
 
 **Dica prática:** Organize seus workflows em pastas lógicas (Router, Service, Core, etc.) para facilitar a gestão e expansão do projeto.
 
-
-
 ## **3. Funcionalidades do Agente**
 
 O Sakamoto já possui capacidades impressionantes e está em constante evolução. Aqui estão suas principais funcionalidades:
@@ -139,8 +133,6 @@ O Sakamoto já possui capacidades impressionantes e está em constante evoluçã
 *   Analisar outros tipos de conteúdo, como vídeos ou documentos.
 
 Essas funcionalidades tornam o Sakamoto um agente versátil, capaz de atender às necessidades de comunicação em um SaaS.
-
-
 
 ## **4. Integração com o SaaS**
 
@@ -159,8 +151,6 @@ Integrar o Sakamoto ao SaaS da Ebeneser envolve conectar o agente de IA ao siste
     *   Garantir que as informações fluam corretamente entre o Sakamoto e o sistema da Ebeneser.
 
 **Exemplo:** Antes da integração final, o Sakamoto foi validado em cenários reais com empresas e afiliados, o que garantiu sua eficácia ao ser incorporado ao SaaS.
-
-
 
 ## **5. Front-end e Interface do Usuário**
 
@@ -184,8 +174,6 @@ O front-end é a parte visível do Sakamoto para os usuários do SaaS. Ele foi p
 
 **Por que isso importa?** Um front-end bem projetado permite que os usuários controlem o agente sem precisar entender os detalhes técnicos do N8N.
 
-
-
 ## **6. Banco de Dados**
 
 O armazenamento de dados é essencial para o funcionamento do Sakamoto e do SaaS. Dois bancos são utilizados:
@@ -195,8 +183,6 @@ O armazenamento de dados é essencial para o funcionamento do Sakamoto e do SaaS
 *   **PostgreSQL:** Guarda o histórico de conversas entre o Sakamoto e os usuários, útil para análises ou auditorias.
 
 **Dica:** Escolha bancos de dados que atendam às suas necessidades de desempenho e segurança. O MySQL é ótimo para dados estruturados do SaaS, enquanto o PostgreSQL é ideal para conversas dinâmicas.
-
-
 
 ## **7. Intenção Futura**
 
@@ -209,8 +195,6 @@ O Sakamoto não para por aí! O plano é torná-lo **multicanal**, expandindo s
 *   **Facebook Messenger:** Adicionar suporte a mais um canal popular.
 
 Isso será feito criando novos workflows no N8N para cada canal, aproveitando a estrutura escalável já existente.
-
-
 
 ## **Conclusão**
 
@@ -226,7 +210,7 @@ Nesta aula, vimos como criar um agente de IA como o Sakamoto usando o N8N e inte
 
 *   **Bancos:** MySQL e PostgreSQL para dados e conversas.
 
-*   **Futuro:** Expansão para múltiplos canais.
 
 
+> Transforme suas ideias em aplicativos de IA rapidamente. **Experimente a** [**Databutton.com.br**](https://databutton.com.br/) **– cadastre-se!**
 
