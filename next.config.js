@@ -3,7 +3,7 @@
  */
 const nextConfig = {
     env: {
-        stackbitPreview: process.env.STACKBIT_PREVIEW
+        stackbitPreview: process.env.STACKBIT_PREVIEW || 'false'
     },
     trailingSlash: true,
     reactStrictMode: true,
