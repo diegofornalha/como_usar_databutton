@@ -7,7 +7,7 @@ excerpt: >-
   Conheça o Databutton, uma plataforma inovadora que utiliza um agente de IA
   para planejar, codificar e implantar suas aplicações web.
 featuredImage:
-  url: /images/abstract-feature4.svg # Outra imagem
+  url: https://images.ctfassets.net/dmu1essxro7q/7xLDNq2zEsCmAWJa76rt4X/3677df4fe1801a69be776b7754cd7793/Logo_after_quote_image.jpg # Outra imagem
   altText: Interface do Databutton
   type: ImageBlock
   styles:
@@ -27,7 +27,7 @@ seo:
   metaDescription: >-
     Descubra como o Databutton funciona como um desenvolvedor IA, transformando
     sua visão em software funcional, ideal para não-técnicos.
-  socialImage: /images/abstract-feature2.svg
+  socialImage: https://images.ctfassets.net/dmu1essxro7q/7xLDNq2zEsCmAWJa76rt4X/3677df4fe1801a69be776b7754cd7793/Logo_after_quote_image.jpg
   type: Seo
 colors: bg-light-fg-dark
 styles:
